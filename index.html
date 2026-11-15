@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PawWell Pet Care | Grooming, Klinik &amp; Produk Hewan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#FAF7EF; --surface:#FFFFFF; --mist:#E7EDDE; --sage:#8FA685;
+  --moss:#2F4A2E; --moss-2:#3F5A3C; --on-moss:#FAF7EF;
+  --honey:#E3A43A; --on-honey:#22180A;
+  --ink:#1F2A1C; --muted:#5B6756; --line:#E2DDCD; --deal:#D9480F;
+  --shadow:0 18px 40px -22px rgba(47,74,46,.45);
+  color-scheme:light;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#141A13; --surface:#1D251B; --mist:#283325; --sage:#7F9877;
+    --moss:#22331F; --moss-2:#2D4229; --on-moss:#EEF1E6;
+    --honey:#E8B04F; --on-honey:#1E1506;
+    --ink:#EEF1E6; --muted:#AAB4A2; --line:#33402F; --deal:#FF8A57;
+    --shadow:0 18px 40px -22px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#141A13; --surface:#1D251B; --mist:#283325; --sage:#7F9877;
+  --moss:#22331F; --moss-2:#2D4229; --on-moss:#EEF1E6;
+  --honey:#E8B04F; --on-honey:#1E1506;
+  --ink:#EEF1E6; --muted:#AAB4A2; --line:#33402F; --deal:#FF8A57;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+[hidden]{display:none !important}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 84px)}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Plus Jakarta Sans","Segoe UI",system-ui,-apple-system,sans-serif;font-size:1.0625rem;line-height:1.65}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--surface)}
+h1,h2,h3{margin:0 0 .5em;line-height:1.15;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+h1{font-size:clamp(2.4rem,5.4vw,3.9rem)}
+h2{font-size:clamp(1.8rem,3.6vw,2.6rem)}
+h3{font-size:1.2rem;font-weight:700;letter-spacing:-.01em}
+p{margin:0 0 1em;max-width:62ch}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--honey);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,100% - 2.5rem);margin-inline:auto}
+.muted{color:var(--muted)}
+.ic{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* Top bar */
+.topbar{background:var(--moss);color:var(--on-moss);font-size:.88rem}
+.topbar .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.4rem 1.5rem;padding:.55rem 0}
+.topbar span{display:inline-flex;align-items:center;gap:.4rem;opacity:.92}
+.topbar .ic{width:16px;height:16px}
+
+/* Header */
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:1.5rem;min-height:72px}
+.logo{display:flex;align-items:center;gap:.5rem;text-decoration:none;font-family:"Fredoka","Plus Jakarta Sans",sans-serif;font-weight:700;font-size:1.65rem;color:var(--moss-2);flex:none}
+.logo svg{width:32px;height:32px;fill:var(--moss-2)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .logo{color:var(--sage)} :root:not([data-theme="light"]) .logo svg{fill:var(--sage)}}
+nav{flex:1;overflow-x:auto}
+nav ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;gap:.15rem}
+nav a{display:block;white-space:nowrap;text-decoration:none;font-weight:600;font-size:.96rem;color:var(--muted);padding:.5rem .8rem;border-radius:10px}
+nav a:hover{color:var(--ink);background:var(--mist)}
+.bar .btn{flex:none}
+@media (max-width:980px){
+  .bar{flex-wrap:wrap;gap:.25rem 1rem;padding:.6rem 0}
+  nav{order:3;flex-basis:100%;margin:0 -1.25rem;padding:0 1.25rem}
+  nav ul{justify-content:flex-start}
+  .cart-btn{margin-left:auto}
+  .bar .btn{padding:.6rem 1rem;font-size:.92rem}
+  .cart-btn{width:44px;height:44px}
+}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.9rem 1.45rem;border-radius:12px;font:inherit;font-weight:700;text-decoration:none;border:2px solid transparent;cursor:pointer;line-height:1.2}
+.btn-accent{background:var(--honey);color:var(--on-honey)}
+.btn-accent:hover{filter:brightness(1.06)}
+.btn-moss{background:var(--moss-2);color:var(--on-moss)}
+.btn-moss:hover{filter:brightness(1.12)}
+.btn-line{border-color:var(--line);background:var(--surface);color:var(--ink)}
+.btn-line:hover{border-color:var(--sage)}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem}
+
+/* Section rhythm */
+section{padding:5.5rem 0}
+.head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:1rem 2rem;margin-bottom:2.5rem}
+.head p{margin:0;color:var(--muted);font-size:1.08rem}
+.alt{background:var(--surface);border-block:1px solid var(--line)}
+
+/* Hero */
+.hero{position:relative;isolation:isolate;overflow:hidden;background:#142012;color:#FAF7EF;padding:4.5rem 0 7rem}
+.hero-grid{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:center}
+.hero h1{color:#FAF7EF;text-wrap:balance}
+.hero .lead{font-size:1.2rem;color:rgba(250,247,239,.74);max-width:46ch;margin-bottom:2rem}
+.hero .actions .btn{padding:1rem 1.6rem}
+.locline{display:flex;align-items:center;gap:.7rem;color:var(--honey);font-weight:600;font-size:.95rem;margin:0 0 1.1rem}
+.locline::before{content:"";width:30px;height:1.5px;background:currentColor}
+.trust{list-style:none;padding:0;margin:2rem 0 0;display:flex;flex-wrap:wrap;gap:.6rem 1.5rem;font-weight:600;font-size:.95rem;color:rgba(250,247,239,.9)}
+.trust li{display:flex;align-items:center;gap:.45rem}
+.trust .ic{color:var(--honey);stroke-width:2.4}
+.hero-art{position:relative}
+.hero-panel{background:#2A3F28;border:1px solid rgba(250,247,239,.1);border-radius:36px 36px 36px 120px;aspect-ratio:1/1;overflow:hidden;position:relative;box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
+
+/* Hero animated background */
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-bg .glow{position:absolute;inset:0;background:radial-gradient(45% 55% at 62% 18%,rgba(227,164,58,.30),transparent 70%),radial-gradient(35% 45% at 18% 70%,rgba(143,166,133,.16),transparent 70%)}
+.hero-bg .trail svg{position:absolute;width:26px;height:26px;fill:#FAF7EF;opacity:0}
+.hero-bg .trail{position:absolute;inset:0}
+@media (prefers-reduced-motion:no-preference){
+  .hero-bg .floaters span{top:105%;opacity:0;animation:rise var(--t) linear var(--d) infinite}
+  .hero-bg .floaters svg{animation:sway var(--sw-t) ease-in-out infinite alternate}
+  .hero-bg .glow{animation:breathe 7s ease-in-out infinite alternate}
+  .hero-bg .trail svg{animation:pawstep 9s ease-in-out infinite;animation-delay:var(--d)}
+}
+@media (prefers-reduced-motion:reduce){.hero-bg .trail svg{opacity:.08}}
+@keyframes rise{0%{top:105%;opacity:0}12%{opacity:var(--o)}82%{opacity:var(--o)}100%{top:-14%;opacity:0}}
+@keyframes sway{from{transform:translateX(calc(var(--sw) * -1)) rotate(calc(var(--rot) * -1))}to{transform:translateX(var(--sw)) rotate(var(--rot))}}
+@keyframes breathe{from{opacity:.75}to{opacity:1}}
+@keyframes pawstep{0%{opacity:0;transform:var(--r) scale(.7)}6%{opacity:.16;transform:var(--r) scale(1)}45%{opacity:.16;transform:var(--r) scale(1)}60%,100%{opacity:0;transform:var(--r) scale(1)}}
+.hero-bg .floaters span{position:absolute;left:var(--x);top:var(--y);width:var(--s);height:var(--s);color:var(--c);opacity:var(--o)}
+.hero-bg .floaters svg{display:block;width:100%;height:100%}
+@media (max-width:700px){.hero-bg .floaters span:nth-child(n+15){display:none}}
+.hero-panel svg{position:absolute;inset:0;width:100%;height:100%}
+.float{position:absolute;background:var(--surface);color:var(--ink);border-radius:16px;padding:.8rem 1rem;box-shadow:var(--shadow);display:flex;align-items:center;gap:.7rem;font-size:.9rem;line-height:1.35}
+.float strong{display:block;font-size:1rem}
+.float .badge{width:40px;height:40px;border-radius:12px;background:var(--mist);display:grid;place-items:center;color:var(--moss-2)}
+.float-1{left:-1.25rem;top:12%}
+.float-2{right:-1rem;bottom:10%}
+.stars{display:flex;gap:2px;color:var(--honey)}
+.stars svg{width:15px;height:15px;fill:currentColor}
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:2.5rem}
+  .hero-art{max-width:460px;width:100%;margin-inline:auto}
+  .float-1{left:.5rem}.float-2{right:.5rem}
+}
+
+/* Hero pets come alive */
+.hero-panel .ear-l,.hero-panel .ear-r,.hero-panel .blink,.hero-panel .pop-heart{transform-box:fill-box}
+.hero-panel .ear-l{transform-origin:90% 10%}
+.hero-panel .ear-r{transform-origin:10% 10%}
+.hero-panel .blink{transform-origin:50% 50%}
+.hero-panel .pop-heart{transform-origin:50% 100%;opacity:0}
+@media (prefers-reduced-motion:no-preference){
+  .hero-panel .ear-l{animation:earL 3.2s ease-in-out infinite}
+  .hero-panel .ear-r{animation:earR 3.2s ease-in-out infinite}
+  .hero-panel .blink{animation:blink 4.5s infinite}
+  .hero-panel .cat-eyes{animation-delay:1.6s}
+  .hero-panel .pop-heart{animation:popheart 4s ease-out infinite}
+  .hero-panel .pop-heart.h2{animation-delay:2s}
+}
+@keyframes earL{0%,70%,100%{transform:rotate(0)}78%{transform:rotate(8deg)}86%{transform:rotate(-3deg)}}
+@keyframes earR{0%,70%,100%{transform:rotate(0)}78%{transform:rotate(-8deg)}86%{transform:rotate(3deg)}}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes popheart{0%{opacity:0;transform:translateY(10px) scale(.4)}15%{opacity:1;transform:translateY(0) scale(1)}70%{opacity:.9;transform:translateY(-40px) scale(1)}100%{opacity:0;transform:translateY(-60px) scale(.8)}}
+
+/* Feature strip */
+.strip{position:relative;z-index:3;margin-top:-3rem;box-shadow:var(--shadow);display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.strip div{padding:1.5rem;display:flex;gap:.9rem;align-items:flex-start;border-right:1px solid var(--line)}
+.strip div:last-child{border-right:0}
+.strip .ic{width:28px;height:28px;color:var(--moss-2)}
+.strip strong{display:block;font-size:1rem}
+.strip span{font-size:.9rem;color:var(--muted)}
+@media (max-width:900px){.strip{grid-template-columns:1fr 1fr}.strip div:nth-child(2){border-right:0}.strip div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+@media (max-width:520px){.strip{grid-template-columns:1fr}.strip div{border-right:0;border-bottom:1px solid var(--line)}.strip div:last-child{border-bottom:0}}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.service{background:var(--bg);border:1px solid var(--line);border-radius:24px;padding:2rem;display:flex;flex-direction:column}
+.service .tile{width:56px;height:56px;border-radius:16px;background:var(--moss-2);color:var(--on-moss);display:grid;place-items:center;margin-bottom:1.25rem}
+.service .tile .ic{width:28px;height:28px}
+.service ul{list-style:none;padding:0;margin:0 0 1.5rem;display:grid;gap:.45rem;font-size:.97rem}
+.service li{display:flex;gap:.5rem;align-items:flex-start}
+.service li .ic{width:18px;height:18px;margin-top:.25rem;color:var(--sage);stroke-width:2.6}
+.price{margin-top:auto;padding-top:1.25rem;border-top:1px dashed var(--line);display:flex;align-items:baseline;justify-content:space-between;gap:1rem}
+.price b{font-size:1.4rem;color:var(--ink)}
+.price small{color:var(--muted)}
+.service.featured{background:var(--moss-2);color:var(--on-moss);border-color:var(--moss-2)}
+.service.featured h3,.service.featured .price b{color:var(--on-moss)}
+.service.featured .tile{background:var(--honey);color:var(--on-honey)}
+.service.featured .price{border-color:rgba(255,255,255,.25)}
+.service.featured .price small,.service.featured p{color:var(--on-moss);opacity:.85}
+.service.featured li .ic{color:var(--honey)}
+@media (max-width:900px){.services{grid-template-columns:1fr}}
+
+/* Steps */
+.steps{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;counter-reset:step}
+.steps li{counter-increment:step;position:relative;padding:1.75rem;border-radius:22px;background:var(--surface);border:1px solid var(--line)}
+.steps li::before{content:counter(step);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--honey);color:var(--on-honey);font-weight:800;font-size:1.1rem;margin-bottom:1rem}
+.steps p{margin:0;color:var(--muted);font-size:.97rem}
+@media (max-width:800px){.steps{grid-template-columns:1fr}}
+
+/* Testimonials */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.quote{background:var(--bg);border:1px solid var(--line);border-radius:22px;padding:1.75rem;margin:0;display:flex;flex-direction:column}
+.quote blockquote{margin:1rem 0 1.5rem;font-size:1.02rem}
+.quote figcaption{margin-top:auto;display:flex;align-items:center;gap:.75rem;font-size:.92rem}
+.quote figcaption b{display:block;font-size:.98rem}
+.mini{width:42px;height:42px;border-radius:50%;background:var(--mist);color:var(--moss-2);display:grid;place-items:center;font-weight:800;font-size:.95rem;flex:none}
+@media (max-width:900px){.quotes{grid-template-columns:1fr}}
+
+/* Member band */
+.band{background:var(--moss-2);color:var(--on-moss);border-radius:32px;padding:3rem clamp(1.5rem,4vw,3.5rem);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;position:relative;overflow:hidden}
+.band h2{color:var(--on-moss);font-size:clamp(1.6rem,3vw,2.2rem)}
+.band p{margin:0;opacity:.88}
+.band .paws{position:absolute;right:-30px;top:-30px;width:180px;fill:var(--on-moss);opacity:.07}
+@media (max-width:760px){.band{grid-template-columns:1fr}}
+
+/* News */
+.news{display:grid;grid-template-columns:1.3fr 1fr;gap:1.25rem}
+.news-col{display:grid;gap:1.25rem}
+.post{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.post .cover{background:var(--mist);display:grid;place-items:center;aspect-ratio:16/8}
+.post .cover svg{width:22%;fill:var(--sage)}
+.post .body{padding:1.5rem}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;font-size:.86rem;color:var(--muted);margin-bottom:.6rem}
+.tag{font-weight:700;color:var(--moss-2);background:var(--mist);padding:.15rem .65rem;border-radius:8px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tag{color:var(--sage)}}
+.post p{color:var(--muted);font-size:.97rem}
+details summary{cursor:pointer;font-weight:700;color:var(--ink);list-style:none;display:inline-flex;gap:.35rem}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";color:var(--honey);font-weight:800}
+details[open] summary::after{content:"−"}
+details p{margin:.75rem 0 0}
+@media (max-width:860px){.news{grid-template-columns:1fr}}
+
+/* Products */
+.products{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.product{background:var(--surface);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.product .pic{aspect-ratio:4/3;background:var(--mist);display:block}
+.product .pic.sand{background:#F3E8D3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .product .pic.sand{background:#2E2A20}}
+.product .pic svg{display:block;width:100%;height:100%}
+.product{position:relative}
+.ribbon{position:absolute;top:12px;left:12px;z-index:1;background:var(--honey);color:var(--on-honey);font-size:.76rem;font-weight:800;padding:.25rem .6rem;border-radius:8px}
+.product .info{padding:1rem 1.1rem 1.15rem;display:flex;flex-direction:column;flex:1;gap:.4rem}
+.product h3{font-size:.98rem;font-weight:600;line-height:1.4;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.8em}
+.now{font-size:1.3rem;font-weight:800;color:var(--deal);line-height:1.2}
+.was-row{display:flex;align-items:center;gap:.4rem;font-size:.85rem;color:var(--muted);min-height:1.35em}
+.off{background:color-mix(in srgb,var(--deal) 14%,transparent);color:var(--deal);font-weight:800;font-size:.75rem;padding:.08rem .4rem;border-radius:6px}
+.tags{display:flex;gap:.35rem;flex-wrap:wrap}
+.tags span{font-size:.72rem;font-weight:700;padding:.15rem .45rem;border-radius:6px;display:inline-flex;align-items:center;gap:.25rem}
+.tags .ic{width:13px;height:13px;stroke-width:2.2}
+.ship{background:var(--mist);color:var(--moss-2)}
+.cod{border:1px solid var(--line);color:var(--muted)}
+.stats{display:flex;align-items:center;gap:.4rem;font-size:.84rem;color:var(--muted)}
+.stats svg{width:14px;height:14px;fill:var(--honey)}
+.stats b{color:var(--ink);font-weight:700}
+.stats .sep{width:1px;height:12px;background:var(--line)}
+.loc{display:flex;align-items:center;gap:.3rem;font-size:.82rem;color:var(--muted)}
+.loc .ic{width:14px;height:14px}
+.ctas{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin-top:auto;padding-top:.7rem}
+.ctas button{font:inherit;font-size:.9rem;font-weight:700;border-radius:10px;padding:.62rem .5rem;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:.35rem}
+.ctas .ic{width:17px;height:17px;stroke-width:2}
+.add{background:var(--surface);color:var(--moss-2);border:1.5px solid var(--moss-2)}
+.add:hover{background:var(--mist)}
+.buy-now{background:var(--moss-2);color:var(--on-moss);border:1.5px solid var(--moss-2)}
+.buy-now:hover{filter:brightness(1.12)}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .add{color:var(--sage);border-color:var(--sage)}
+  :root:not([data-theme="light"]) .ship{color:var(--sage)}
+}
+
+/* Service cards (marketplace style) */
+.subhead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem 2rem;margin:0 0 1.25rem}
+.subhead h3{font-size:1.45rem;margin:0}
+.subhead p{margin:0;color:var(--muted);font-size:.98rem}
+.subhead.gap{margin-top:4rem}
+.svc h3{min-height:0}
+.svc .desc{font-size:.92rem;color:var(--muted);margin:0}
+.incl{list-style:none;padding:.75rem 0 .2rem;margin:.2rem 0 0;display:grid;gap:.35rem;font-size:.9rem;border-top:1px dashed var(--line)}
+.incl li{display:flex;gap:.45rem;align-items:flex-start;line-height:1.45}
+.incl .ic{width:16px;height:16px;color:var(--sage);stroke-width:2.8;margin-top:.15rem}
+.from{display:block;font-size:.78rem;font-weight:600;color:var(--muted);margin-top:.5rem}
+.per{font-size:.85rem;font-weight:600;color:var(--muted)}
+.dur{display:flex;align-items:center;gap:.3rem;font-size:.82rem;color:var(--muted)}
+.dur .ic{width:14px;height:14px}
+.kind{display:inline-block;font-size:.7rem;font-weight:800;color:var(--moss-2);background:var(--mist);border-radius:6px;padding:.05rem .4rem;margin-bottom:.25rem}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .kind{color:var(--sage)}}
+
+/* Cart button */
+.cart-btn{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:12px;width:48px;height:48px;display:grid;place-items:center;color:var(--ink);cursor:pointer;flex:none}
+.cart-btn:hover{border-color:var(--sage)}
+.cart-btn .ic{width:24px;height:24px}
+.cart-btn .count{position:absolute;top:-7px;right:-7px;min-width:21px;height:21px;padding:0 5px;border-radius:999px;background:var(--deal);color:#fff;font-size:.72rem;font-weight:800;display:grid;place-items:center;border:2px solid var(--surface)}
+.cart-btn .count[hidden]{display:none}
+@media (prefers-reduced-motion:no-preference){.cart-btn.bump{animation:bump .45s ease-out}}
+@keyframes bump{30%{transform:scale(1.18)}60%{transform:scale(.94)}100%{transform:scale(1)}}
+
+/* Cart drawer */
+body.lock{overflow:hidden}
+.overlay{position:fixed;inset:0;background:rgba(20,26,19,.5);z-index:80;opacity:0;pointer-events:none;transition:opacity .25s}
+.overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100%);background:var(--surface);z-index:90;display:flex;flex-direction:column;transform:translateX(100%);visibility:hidden;transition:transform .3s ease,visibility 0s .3s;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:-24px 0 48px -24px rgba(0,0,0,.35)}
+.drawer.open{transform:none;visibility:visible;transition:transform .3s ease,visibility 0s}
+@media (prefers-reduced-motion:reduce){.drawer,.drawer.open,.overlay{transition:none}}
+.drawer-head{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem;border-bottom:1px solid var(--line)}
+.drawer-head h2{font-size:1.25rem;margin:0}
+.drawer-head h2 span{color:var(--muted);font-weight:600;font-size:1rem}
+.x{background:none;border:0;font-size:1.7rem;line-height:1;cursor:pointer;color:var(--muted);width:42px;height:42px;border-radius:10px}
+.x:hover{background:var(--mist);color:var(--ink)}
+.cart-list{flex:1;overflow-y:auto;padding:0 1.25rem;list-style:none;margin:0}
+.cart-item{display:grid;grid-template-columns:76px 1fr;gap:.9rem;padding:1rem 0;border-bottom:1px solid var(--line)}
+.cart-item .thumb{width:76px;height:76px;border-radius:12px;background:var(--mist);overflow:hidden}
+.cart-item .thumb.sand{background:#F3E8D3}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .cart-item .thumb.sand{background:#2E2A20}}
+.cart-item .thumb svg{width:100%;height:100%;display:block}
+.cart-item .nm{font-weight:600;font-size:.93rem;line-height:1.35;margin:0 0 .25rem}
+.cart-item .pr{font-weight:800;color:var(--deal)}
+.cart-item .pr s{color:var(--muted);font-weight:500;font-size:.8rem;margin-left:.35rem}
+.cart-item .row2{display:flex;justify-content:space-between;align-items:center;margin-top:.55rem;gap:.5rem}
+.stepper{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.stepper button{width:34px;height:34px;background:var(--bg);border:0;font:inherit;font-size:1.05rem;font-weight:800;color:var(--ink);cursor:pointer}
+.stepper button:disabled{opacity:.35;cursor:not-allowed}
+.stepper output{min-width:38px;text-align:center;font-weight:700;font-size:.92rem}
+.del{background:none;border:0;color:var(--muted);font:inherit;font-size:.85rem;font-weight:600;cursor:pointer;padding:.3rem}
+.del:hover{color:var(--deal)}
+.empty{text-align:center;padding:3.5rem 1rem;color:var(--muted)}
+.empty svg{width:72px;height:72px;fill:var(--sage);opacity:.55;margin-bottom:.5rem}
+.empty p{margin:0 auto 1.25rem}
+.summary{border-top:1px solid var(--line);padding:1rem 1.25rem 1.25rem;background:var(--bg)}
+.ship-hint{font-size:.84rem;font-weight:600;color:var(--moss-2);background:var(--mist);border-radius:10px;padding:.55rem .75rem;margin-bottom:.9rem;display:flex;gap:.45rem;align-items:center}
+.ship-hint .ic{width:18px;height:18px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ship-hint{color:var(--sage)}}
+.summary .line{display:flex;justify-content:space-between;font-size:.95rem;margin-bottom:.35rem;color:var(--muted)}
+.summary .line > span:last-child{color:var(--ink);font-weight:600}
+.summary .save > span:last-child{color:var(--moss-2)}
+.summary .total{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:1.05rem;margin:.75rem 0 1rem;padding-top:.75rem;border-top:1px dashed var(--line)}
+.summary .total span:last-child{color:var(--deal);font-size:1.35rem}
+.checkout{width:100%}
+.checkout[aria-disabled="true"]{opacity:.45;pointer-events:none}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);background:var(--ink);color:var(--bg);padding:.7rem .8rem .7rem 1.1rem;border-radius:12px;font-weight:600;font-size:.92rem;z-index:100;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;display:flex;gap:.9rem;align-items:center;white-space:nowrap}
+.toast.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast button{background:none;border:0;color:var(--honey);font:inherit;font-weight:800;cursor:pointer;padding:.2rem .4rem}
+.product .item,.product .bits,.product .tag{transform-box:fill-box;transform-origin:50% 100%}
+.product .tag{transform-origin:50% 0}
+@media (prefers-reduced-motion:no-preference){
+  .product .item{animation:float 4s ease-in-out infinite}
+  .product:nth-child(2) .item{animation-delay:-.7s}
+  .product:nth-child(3) .item{animation-delay:-1.4s}
+  .product:nth-child(4) .item{animation-delay:-2.1s}
+  .product:nth-child(5) .item{animation-delay:-2.8s}
+  .product:nth-child(6) .item{animation-delay:-3.5s}
+  .product .tag{animation:swing 3s ease-in-out infinite}
+  .product:hover .item{animation:wiggle .6s ease-in-out}
+  .product:hover .bits{animation:hop .5s ease-out 2}
+  .product:hover .tag{animation:swing .8s ease-in-out infinite}
+}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes wiggle{0%,100%{transform:translateY(-6px) rotate(0)}25%{transform:translateY(-8px) rotate(-3deg)}75%{transform:translateY(-8px) rotate(3deg)}}
+@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes swing{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
+.cat{font-size:.82rem;font-weight:600;color:var(--muted)}
+@media (max-width:960px){.products{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.products{grid-template-columns:1fr}}
+.table-wrap{overflow-x:auto;margin-top:3rem;border:1px solid var(--line);border-radius:22px;background:var(--surface)}
+table{width:100%;border-collapse:collapse;min-width:560px}
+th,td{text-align:left;padding:1rem 1.35rem;border-bottom:1px solid var(--line);vertical-align:top}
+thead th{background:var(--mist);font-size:.95rem}
+tbody tr:last-child td{border-bottom:0}
+td:last-child{white-space:nowrap;font-weight:800}
+td:first-child{font-weight:700}
+.note{font-size:.92rem;color:var(--muted);margin-top:1rem}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3rem;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:2rem}
+.card h3{margin-top:1.25rem}
+.card h3:first-child{margin-top:0}
+.card ul{margin:0;padding-left:1.15rem}
+.card li{margin-bottom:.45rem}
+.card li::marker{color:var(--honey)}
+.partners{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:3rem}
+.partner{border:1px solid var(--line);border-radius:20px;padding:1.5rem;background:var(--bg)}
+.partner .ic{width:28px;height:28px;color:var(--moss-2);margin-bottom:.75rem}
+.partner p{margin:0;font-size:.93rem;color:var(--muted)}
+.segments{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+.segments span{background:var(--mist);border-radius:10px;padding:.5rem .9rem;font-weight:600;font-size:.95rem}
+@media (max-width:900px){.about-grid{grid-template-columns:1fr;gap:2rem}.partners{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.partners{grid-template-columns:1fr}}
+
+/* Management */
+.team{display:grid;grid-template-columns:repeat(5,1fr);gap:1.1rem}
+.member{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:1.5rem 1.25rem;text-align:center}
+.avatar{width:88px;height:88px;border-radius:50%;margin:0 auto 1rem;display:grid;place-items:center;font-weight:800;font-size:1.5rem;background:var(--mist);color:var(--moss-2);border:4px solid var(--surface);box-shadow:0 0 0 2px var(--sage)}
+.member h3{font-size:1.02rem;margin-bottom:.15rem}
+.member .role{font-size:.88rem;font-weight:700;color:var(--honey);margin-bottom:.6rem}
+.member p{margin:0;font-size:.9rem;color:var(--muted)}
+.member.lead{background:var(--moss-2);border-color:var(--moss-2);color:var(--on-moss)}
+.member.lead h3{color:var(--on-moss)}
+.member.lead p{color:var(--on-moss);opacity:.85}
+.member.lead .avatar{background:var(--honey);color:var(--on-honey);border-color:var(--moss-2);box-shadow:0 0 0 2px var(--honey)}
+@media (max-width:1000px){.team{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:640px){.team{grid-template-columns:1fr 1fr}}
+@media (max-width:420px){.team{grid-template-columns:1fr}}
+
+/* Contact (CTA panel) */
+.cta-panel{position:relative;overflow:hidden;text-align:center;border-radius:32px;padding:clamp(3.5rem,8vw,6rem) clamp(1.5rem,5vw,4rem);
+  background:radial-gradient(60% 60% at 50% 0%,rgba(227,164,58,.38),rgba(227,164,58,0) 70%),radial-gradient(40% 50% at 85% 100%,rgba(143,166,133,.18),transparent 70%),#1C2A1A;
+  border:1px solid rgba(250,247,239,.09);color:#FAF7EF}
+.cta-panel::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 1px 0 rgba(250,247,239,.08)}
+.cta-panel .paw-bg{position:absolute;width:220px;fill:#FAF7EF;opacity:.04;pointer-events:none}
+.cta-panel .paw-a{left:-50px;bottom:-60px;transform:rotate(-20deg)}
+.cta-panel .paw-b{right:-40px;top:-50px;width:160px;transform:rotate(25deg)}
+.cta-panel h2{color:#FAF7EF;font-size:clamp(2.2rem,5.2vw,3.6rem);letter-spacing:-.035em;line-height:1.08;max-width:15ch;margin:0 auto .6em}
+.cta-panel .sub{color:rgba(250,247,239,.72);font-size:clamp(1.02rem,1.6vw,1.15rem);max-width:54ch;margin:0 auto 2.25rem}
+.cta-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:.8rem}
+.btn-glow{background:var(--honey);color:#22180A;border-radius:999px;padding:1rem 1.7rem;box-shadow:0 14px 34px -10px rgba(227,164,58,.75)}
+.btn-glow:hover{filter:brightness(1.07)}
+.btn-ghost-dark{border-radius:999px;padding:1rem 1.7rem;color:#FAF7EF;border:1px solid rgba(250,247,239,.22);background:rgba(250,247,239,.03)}
+.btn-ghost-dark:hover{background:rgba(250,247,239,.08);border-color:rgba(250,247,239,.4)}
+.btn-glow .ic,.btn-ghost-dark .ic{width:20px;height:20px}
+.socials{list-style:none;padding:0;margin:2rem 0 0;display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem}
+.socials a{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:rgba(250,247,239,.75);border:1px solid rgba(250,247,239,.16);background:rgba(250,247,239,.03)}
+.socials a:hover{color:#22180A;background:var(--honey);border-color:var(--honey)}
+.socials .ic{width:19px;height:19px}
+.visit{display:flex;flex-wrap:wrap;justify-content:center;gap:.4rem 1.25rem;margin-top:2rem;font-size:.9rem;color:rgba(250,247,239,.6)}
+.visit span{display:inline-flex;align-items:center;gap:.4rem}
+.visit .ic{width:15px;height:15px}
+.cta-panel :focus-visible{outline-color:var(--honey)}
+
+/* Footer */
+footer{background:var(--moss);color:var(--on-moss);padding:4rem 0 2rem;margin-top:5rem}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:2rem}
+footer .logo{color:var(--on-moss)}
+footer .logo svg{fill:var(--honey)}
+footer h3{color:var(--on-moss);font-size:1rem;margin-bottom:1rem}
+footer p,footer li{font-size:.94rem;opacity:.85}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+footer a{text-decoration:none}
+footer a:hover{text-decoration:underline}
+.copy{border-top:1px solid rgba(255,255,255,.15);margin-top:3rem;padding-top:1.5rem;font-size:.88rem;opacity:.75;display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem}
+@media (max-width:860px){.foot{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){.foot{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="paw" viewBox="0 0 64 64"><ellipse cx="32" cy="42" rx="14" ry="12"/><ellipse cx="13" cy="27" rx="6" ry="8" transform="rotate(-20 13 27)"/><ellipse cx="24" cy="15" rx="6" ry="8.5"/><ellipse cx="40" cy="15" rx="6" ry="8.5"/><ellipse cx="51" cy="27" rx="6" ry="8" transform="rotate(20 51 27)"/></symbol>
+  <symbol id="i-scissors" viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-steth" viewBox="0 0 24 24"><path d="M5 3v6a5 5 0 0 0 10 0V3"/><path d="M10 14v2a5 5 0 0 0 10 0v-2"/><circle cx="20" cy="12" r="2"/></symbol>
+  <symbol id="i-bottle" viewBox="0 0 24 24"><path d="M9 2h6v4l2 3v12a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V9l2-3z"/><path d="M7 13h10"/></symbol>
+  <symbol id="i-can" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="7" ry="2.5"/><path d="M5 6v12c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5V6"/><path d="M5 11c0 1.4 3.1 2.5 7 2.5s7-1.1 7-2.5"/></symbol>
+  <symbol id="i-collar" viewBox="0 0 24 24"><path d="M4 9c0-2 3.6-4 8-4s8 2 8 4-3.6 4-8 4-8-2-8-4z"/><path d="M12 13v2"/><circle cx="12" cy="18" r="3"/></symbol>
+  <symbol id="i-comb" viewBox="0 0 24 24"><path d="M3 7h18v4H3z"/><path d="M5 11v7M8 11v7M11 11v7M14 11v7M17 11v7M20 11v5"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18v-5a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v5z"/><path d="M7 10V8a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4L19 7"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M3 6h11v10H3z"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.4 11h10.2L20 7H6.2"/><circle cx="9" cy="19.5" r="1.5"/><circle cx="17" cy="19.5" r="1.5"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19z"/><path d="M9 10h.01M12 10h.01M15 10h.01"/></symbol>
+  <symbol id="f-bone" viewBox="0 0 64 64"><g fill="currentColor"><rect x="14" y="26" width="36" height="12" rx="6"/><circle cx="14" cy="25" r="8"/><circle cx="14" cy="39" r="8"/><circle cx="50" cy="25" r="8"/><circle cx="50" cy="39" r="8"/></g></symbol>
+  <symbol id="f-fish" viewBox="0 0 64 64"><path fill="currentColor" d="M8 32c8-12 22-16 34-10l12-8v36l-12-8C30 48 16 44 8 32z"/><circle cx="20" cy="30" r="2.6" fill="#142012"/></symbol>
+  <symbol id="f-yarn" viewBox="0 0 64 64"><circle cx="30" cy="32" r="20" fill="currentColor"/><path d="M14 22c10 2 22 10 28 24M12 34c10-2 24 2 32 10M22 13c6 8 10 22 8 37M38 14c-2 8-8 18-20 30" fill="none" stroke="#142012" stroke-opacity=".45" stroke-width="2.4" stroke-linecap="round"/><path d="M48 44c6 4 8 8 6 12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="f-ball" viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="currentColor"/><path d="M14 24c8 4 10 12 6 22M50 40c-8-4-10-12-6-22" fill="none" stroke="#142012" stroke-opacity=".45" stroke-width="3" stroke-linecap="round"/></symbol>
+  <symbol id="f-bubble" viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="none" stroke="currentColor" stroke-width="3.5"/><path d="M22 26a12 12 0 0 1 8-7" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/></symbol>
+  <symbol id="f-heart" viewBox="0 0 64 64"><path fill="currentColor" d="M32 54S10 40 10 24a11 11 0 0 1 22-3 11 11 0 0 1 22 3c0 16-22 30-22 30z"/></symbol>
+  <symbol id="f-bowl" viewBox="0 0 64 64"><g fill="currentColor"><circle cx="24" cy="26" r="5"/><circle cx="34" cy="23" r="5"/><circle cx="42" cy="28" r="5"/><circle cx="30" cy="30" r="5"/><path d="M8 32h48l-6 18H14z"/></g></symbol>
+  <symbol id="star" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.8 6.3.8-4.6 4.4 1.2 6.3L12 17l-5.7 3.1 1.2-6.3L2.9 9.4l6.3-.8z"/></symbol>
+</svg>
+
+<div class="topbar">
+  <div class="wrap">
+    <span><svg class="ic"><use href="#i-clock"/></svg>Buka setiap hari, 09.00–20.00</span>
+    <span><svg class="ic"><use href="#i-phone"/></svg>WhatsApp 0812-3456-7890</span>
+    <span><svg class="ic"><use href="#i-pin"/></svg>Jl. Kenanga Raya No. 12, Jakarta Selatan</span>
+  </div>
+</div>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#home"><svg aria-hidden="true"><use href="#paw"/></svg>PawWell</a>
+    <nav aria-label="Navigasi utama">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#product">Product</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#management">Management</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+    </nav>
+    <button class="cart-btn" id="cartBtn" type="button" aria-label="Buka keranjang" aria-controls="cart" aria-expanded="false">
+      <svg class="ic"><use href="#i-cart"/></svg><span class="count" id="cartCount" hidden>0</span>
+    </button>
+    <a class="btn btn-accent" href="#contact">Booking</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ HOME ============ -->
+<div id="home">
+  <div class="hero">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="glow"></div>
+      <div class="trail"><svg viewBox="0 0 64 64" style="left:4.0%;top:79.6%;--r:rotate(72deg);--d:0.00s"><use href="#paw"/></svg><svg viewBox="0 0 64 64" style="left:13.2%;top:70.8%;--r:rotate(72deg);--d:0.42s"><use href="#paw"/></svg><svg viewBox="0 0 64 64" style="left:22.4%;top:68.4%;--r:rotate(72deg);--d:0.84s"><use href="#paw"/></svg><svg viewBox="0 0 64 64" style="left:31.6%;top:59.6%;--r:rotate(72deg);--d:1.26s"><use href="#paw"/></svg><svg viewBox="0 0 64 64" style="left:40.8%;top:57.2%;--r:rotate(72deg);--d:1.68s"><use href="#paw"/></svg><svg viewBox="0 0 64 64" style="left:50.0%;top:48.4%;--r:rotate(72deg);--d:2.10s"><use href="#paw"/></svg><svg viewBox="0 0 64 64" style="left:59.2%;top:46.0%;--r:rotate(72deg);--d:2.52s"><use href="#paw"/></svg><svg viewBox="0 0 64 64" style="left:68.4%;top:37.2%;--r:rotate(72deg);--d:2.94s"><use href="#paw"/></svg><svg viewBox="0 0 64 64" style="left:77.6%;top:34.8%;--r:rotate(72deg);--d:3.36s"><use href="#paw"/></svg><svg viewBox="0 0 64 64" style="left:86.8%;top:26.0%;--r:rotate(72deg);--d:3.78s"><use href="#paw"/></svg></div>
+      <div class="floaters"><span style="--x:2.1%;--y:29%;--s:53px;--t:24.3s;--d:-19.0s;--o:0.29;--c:#8FA685;--sw:10px;--sw-t:4.1s;--rot:23deg"><svg viewBox="0 0 64 64"><use href="#f-bone"/></svg></span><span style="--x:7.3%;--y:86%;--s:63px;--t:16.2s;--d:-7.2s;--o:0.24;--c:#8FA685;--sw:8px;--sw-t:3.7s;--rot:20deg"><svg viewBox="0 0 64 64"><use href="#f-fish"/></svg></span><span style="--x:13.1%;--y:13%;--s:57px;--t:22.9s;--d:-14.9s;--o:0.32;--c:#8FA685;--sw:8px;--sw-t:2.6s;--rot:15deg"><svg viewBox="0 0 64 64"><use href="#f-yarn"/></svg></span><span style="--x:16.3%;--y:34%;--s:62px;--t:19.6s;--d:-8.6s;--o:0.35;--c:#8FA685;--sw:18px;--sw-t:3.1s;--rot:8deg"><svg viewBox="0 0 64 64"><use href="#f-ball"/></svg></span><span style="--x:21.0%;--y:15%;--s:39px;--t:21.9s;--d:-8.9s;--o:0.4;--c:#FAF7EF;--sw:19px;--sw-t:3.0s;--rot:15deg"><svg viewBox="0 0 64 64"><use href="#f-bubble"/></svg></span><span style="--x:25.0%;--y:42%;--s:20px;--t:14.8s;--d:-11.3s;--o:0.37;--c:#FAF7EF;--sw:14px;--sw-t:2.6s;--rot:8deg"><svg viewBox="0 0 64 64"><use href="#f-bubble"/></svg></span><span style="--x:30.8%;--y:55%;--s:31px;--t:16.6s;--d:-15.4s;--o:0.22;--c:#E3A43A;--sw:14px;--sw-t:2.6s;--rot:14deg"><svg viewBox="0 0 64 64"><use href="#f-heart"/></svg></span><span style="--x:35.1%;--y:20%;--s:41px;--t:18.0s;--d:-5.6s;--o:0.21;--c:#E3A43A;--sw:10px;--sw-t:3.0s;--rot:11deg"><svg viewBox="0 0 64 64"><use href="#f-bowl"/></svg></span><span style="--x:36.9%;--y:70%;--s:49px;--t:23.6s;--d:-4.2s;--o:0.3;--c:#E3A43A;--sw:11px;--sw-t:4.5s;--rot:12deg"><svg viewBox="0 0 64 64"><use href="#paw"/></svg></span><span style="--x:42.9%;--y:39%;--s:36px;--t:15.4s;--d:-6.5s;--o:0.34;--c:#FAF7EF;--sw:21px;--sw-t:4.4s;--rot:17deg"><svg viewBox="0 0 64 64"><use href="#f-bubble"/></svg></span><span style="--x:49.5%;--y:78%;--s:31px;--t:16.5s;--d:-6.5s;--o:0.35;--c:#8FA685;--sw:9px;--sw-t:2.6s;--rot:12deg"><svg viewBox="0 0 64 64"><use href="#f-bone"/></svg></span><span style="--x:51.2%;--y:14%;--s:41px;--t:14.1s;--d:-8.6s;--o:0.35;--c:#E3A43A;--sw:9px;--sw-t:2.7s;--rot:15deg"><svg viewBox="0 0 64 64"><use href="#f-fish"/></svg></span><span style="--x:55.1%;--y:78%;--s:45px;--t:18.5s;--d:-8.4s;--o:0.38;--c:#E3A43A;--sw:10px;--sw-t:4.2s;--rot:13deg"><svg viewBox="0 0 64 64"><use href="#f-yarn"/></svg></span><span style="--x:61.8%;--y:25%;--s:42px;--t:24.9s;--d:-20.4s;--o:0.26;--c:#FAF7EF;--sw:19px;--sw-t:3.8s;--rot:25deg"><svg viewBox="0 0 64 64"><use href="#f-ball"/></svg></span><span style="--x:64.8%;--y:18%;--s:36px;--t:24.6s;--d:-14.8s;--o:0.37;--c:#FAF7EF;--sw:9px;--sw-t:2.6s;--rot:16deg"><svg viewBox="0 0 64 64"><use href="#f-bubble"/></svg></span><span style="--x:69.5%;--y:42%;--s:36px;--t:17.1s;--d:-14.1s;--o:0.4;--c:#FAF7EF;--sw:16px;--sw-t:2.9s;--rot:10deg"><svg viewBox="0 0 64 64"><use href="#f-bubble"/></svg></span><span style="--x:73.6%;--y:32%;--s:50px;--t:20.7s;--d:-17.6s;--o:0.32;--c:#E3A43A;--sw:22px;--sw-t:4.3s;--rot:8deg"><svg viewBox="0 0 64 64"><use href="#f-heart"/></svg></span><span style="--x:78.0%;--y:72%;--s:48px;--t:19.3s;--d:-1.2s;--o:0.24;--c:#E3A43A;--sw:17px;--sw-t:4.4s;--rot:10deg"><svg viewBox="0 0 64 64"><use href="#f-bowl"/></svg></span><span style="--x:83.6%;--y:22%;--s:49px;--t:25.8s;--d:-16.9s;--o:0.34;--c:#8FA685;--sw:17px;--sw-t:2.6s;--rot:8deg"><svg viewBox="0 0 64 64"><use href="#paw"/></svg></span><span style="--x:88.5%;--y:86%;--s:35px;--t:22.4s;--d:-21.6s;--o:0.29;--c:#FAF7EF;--sw:9px;--sw-t:3.5s;--rot:17deg"><svg viewBox="0 0 64 64"><use href="#f-bubble"/></svg></span><span style="--x:92.5%;--y:21%;--s:33px;--t:14.9s;--d:-8.1s;--o:0.34;--c:#8FA685;--sw:20px;--sw-t:4.4s;--rot:18deg"><svg viewBox="0 0 64 64"><use href="#f-bone"/></svg></span><span style="--x:97.2%;--y:68%;--s:58px;--t:19.7s;--d:-1.5s;--o:0.35;--c:#FAF7EF;--sw:17px;--sw-t:2.5s;--rot:20deg"><svg viewBox="0 0 64 64"><use href="#f-fish"/></svg></span></div>
+    </div>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="locline">Jakarta Selatan, Indonesia</p>
+        <h1>Perawatan hewan yang lengkap, profesional, dan penuh kasih.</h1>
+        <p class="lead">PawWell menyediakan grooming, klinik dokter hewan, dan produk perawatan untuk anjing dan kucing, semuanya di satu tempat.</p>
+        <div class="actions">
+          <a class="btn btn-glow" href="#contact">Booking grooming</a>
+          <a class="btn btn-ghost-dark" href="#layanan">Lihat layanan</a>
+        </div>
+        <ul class="trust">
+          <li><svg class="ic"><use href="#i-check"/></svg>Dokter hewan bersertifikat</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Produk original</li>
+          <li><svg class="ic"><use href="#i-check"/></svg>Buka 7 hari</li>
+        </ul>
+      </div>
+
+      <div class="hero-art">
+        <div class="hero-panel" aria-hidden="true">
+          <svg viewBox="0 0 500 500">
+            <circle cx="400" cy="90" r="110" fill="#8FA685" opacity=".35"/>
+            <circle cx="80" cy="430" r="140" fill="#8FA685" opacity=".25"/>
+            <!-- dog -->
+            <g transform="translate(60 172)">
+              <path d="M30 330 C30 230 70 190 135 190 C200 190 240 230 240 330Z" fill="#E3B877"/>
+              <ellipse cx="135" cy="300" rx="55" ry="40" fill="#F4DDB3"/>
+              <path class="ear-l" d="M50 70 C10 50 0 150 40 180 L68 110Z" fill="#B98A4E"/>
+              <path class="ear-r" d="M220 70 C260 50 270 150 230 180 L202 110Z" fill="#B98A4E"/>
+              <ellipse cx="135" cy="125" rx="92" ry="98" fill="#E8BE7E"/>
+              <ellipse cx="135" cy="175" rx="55" ry="44" fill="#F6E2BD"/>
+              <g class="blink"><circle cx="100" cy="115" r="10" fill="#2D2A24"/><circle cx="170" cy="115" r="10" fill="#2D2A24"/>
+              <circle cx="103" cy="111" r="3.5" fill="#fff"/><circle cx="173" cy="111" r="3.5" fill="#fff"/></g>
+              <ellipse cx="135" cy="157" rx="18" ry="12" fill="#2D2A24"/>
+              <path d="M135 169v12M135 181c-9 9-22 7-27-2M135 181c9 9 22 7 27-2" stroke="#2D2A24" stroke-width="4" fill="none" stroke-linecap="round"/>
+              <path d="M123 192q12 24 24 0" fill="#D97A7A"/>
+              <path d="M80 232 q55 22 110 0 v14 q-55 22 -110 0z" fill="#E3A43A"/>
+              <circle cx="135" cy="258" r="10" fill="#FAF7EF"/>
+            </g>
+            <!-- cat -->
+            <g transform="translate(305 302)">
+              <path d="M10 200 C10 140 40 115 85 115 C130 115 160 140 160 200Z" fill="#A8A69C"/>
+              <path d="M30 40 L45 -5 L70 30Z" fill="#8E8B81"/>
+              <path d="M140 40 L125 -5 L100 30Z" fill="#8E8B81"/>
+              <ellipse cx="85" cy="65" rx="62" ry="56" fill="#B4B2A8"/>
+              <path d="M70 15 l5 18 M85 12 v20 M100 15 l-5 18" stroke="#7D7A70" stroke-width="5" stroke-linecap="round"/>
+              <g class="blink cat-eyes"><ellipse cx="62" cy="62" rx="9" ry="10" fill="#6E8B3D"/><ellipse cx="108" cy="62" rx="9" ry="10" fill="#6E8B3D"/>
+              <ellipse cx="62" cy="63" rx="3" ry="7" fill="#1E1E1A"/><ellipse cx="108" cy="63" rx="3" ry="7" fill="#1E1E1A"/></g>
+              <path d="M79 82 h12 l-6 7z" fill="#D98C8C"/>
+              <path d="M85 89 c-4 6 -11 6 -14 1 M85 89 c4 6 11 6 14 1" stroke="#4A4740" stroke-width="3" fill="none" stroke-linecap="round"/>
+              <path d="M40 85 h-28 M40 92 l-26 6 M130 85 h28 M130 92 l26 6" stroke="#F4F1EA" stroke-width="2.5" stroke-linecap="round"/>
+            </g>
+            <g class="pop-heart h1"><path d="M290 250 c0-9 12-12 15-3 c3-9 15-6 15 3 c0 11-15 19-15 19 s-15-8-15-19z" fill="#E3A43A"/></g>
+            <g class="pop-heart h2"><path d="M330 230 c0-6 8-8 10-2 c2-6 10-4 10 2 c0 7-10 12-10 12 s-10-5-10-12z" fill="#FAF7EF"/></g>
+            <!-- paw prints -->
+            <g fill="#FAF7EF" opacity=".25">
+              <use href="#paw" x="380" y="170" width="44" height="44"/>
+              <use href="#paw" x="420" y="120" width="34" height="34"/>
+            </g>
+          </svg>
+        </div>
+        <div class="float float-1">
+          <div class="badge"><svg class="ic"><use href="#i-steth"/></svg></div>
+          <div><strong>Klinik dokter hewan</strong>Konsultasi tanpa antre lama</div>
+        </div>
+        <div class="float float-2">
+          <div>
+            <div class="stars" aria-label="Rating 4,9 dari 5">
+              <svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg>
+            </div>
+            <strong>4,9 dari 5</strong>dari 1.200+ ulasan pelanggan
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="strip">
+      <div><svg class="ic"><use href="#i-shield"/></svg><p style="margin:0"><strong>Tenaga ahli</strong><span>Dokter hewan dan groomer berpengalaman</span></p></div>
+      <div><svg class="ic"><use href="#i-bag"/></svg><p style="margin:0"><strong>Produk berkualitas</strong><span>Dari supplier tepercaya, harga terjangkau</span></p></div>
+      <div><svg class="ic"><use href="#i-truck"/></svg><p style="margin:0"><strong>Kirim ke rumah</strong><span>Belanja via website, aplikasi, dan marketplace</span></p></div>
+      <div><svg class="ic"><use href="#i-heart"/></svg><p style="margin:0"><strong>Program member</strong><span>Kumpulkan poin dari setiap transaksi</span></p></div>
+    </div>
+  </div>
+
+  <section id="layanan">
+    <div class="wrap">
+      <div class="head">
+        <h2>Layanan kami</h2>
+        <p>Pilih layanan sesuai kebutuhan hewan peliharaanmu.</p>
+      </div>
+      <div class="services">
+        <article class="service">
+          <div class="tile"><svg class="ic"><use href="#i-scissors"/></svg></div>
+          <h3>Grooming &amp; spa</h3>
+          <p class="muted">Hewan bersih, wangi, dan nyaman.</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg>Mandi dengan sampo sesuai jenis bulu</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Potong kuku dan bersih telinga</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Potong dan rapikan bulu</li>
+          </ul>
+          <div class="price"><small>Mulai dari</small><b>Rp85.000</b></div>
+        </article>
+        <article class="service featured">
+          <div class="tile"><svg class="ic"><use href="#i-steth"/></svg></div>
+          <h3>Klinik &amp; konsultasi</h3>
+          <p>Pemeriksaan oleh dokter hewan.</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg>Pemeriksaan kesehatan umum</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Vaksinasi dan obat cacing</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Saran nutrisi dan perawatan</li>
+          </ul>
+          <div class="price"><small>Mulai dari</small><b>Rp100.000</b></div>
+        </article>
+        <article class="service">
+          <div class="tile"><svg class="ic"><use href="#i-bag"/></svg></div>
+          <h3>Pet shop</h3>
+          <p class="muted">Kebutuhan harian hewan, siap kirim.</p>
+          <ul>
+            <li><svg class="ic"><use href="#i-check"/></svg>Makanan kering dan basah</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Vitamin dan suplemen</li>
+            <li><svg class="ic"><use href="#i-check"/></svg>Aksesoris dan perlengkapan</li>
+          </ul>
+          <div class="price"><small>Mulai dari</small><b>Rp12.500</b></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="head">
+        <h2>Cara booking</h2>
+        <p>Tiga langkah, tanpa antre panjang.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Pilih layanan</h3><p>Tentukan grooming, konsultasi, atau paket member yang kamu butuhkan.</p></li>
+        <li><h3>Atur jadwal</h3><p>Booking lewat WhatsApp, website, atau aplikasi PawWell. Kami konfirmasi dalam hitungan menit.</p></li>
+        <li><h3>Datang ke PawWell</h3><p>Hewanmu kami rawat, dan kamu menerima catatan perawatan setelah selesai.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="head">
+        <h2>Kata pelanggan kami</h2>
+        <p>Ulasan dari pemilik hewan yang rutin datang ke PawWell.</p>
+      </div>
+      <div class="quotes">
+        <figure class="quote">
+          <div class="stars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
+          <blockquote>Kucing saya biasanya stres kalau dimandikan, tapi di PawWell groomernya sabar sekali. Pulangnya wangi dan tetap tenang.</blockquote>
+          <figcaption><span class="mini">RA</span><span><b>Rina A.</b>Pemilik kucing persia</span></figcaption>
+        </figure>
+        <figure class="quote">
+          <div class="stars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
+          <blockquote>Praktis, bisa grooming sekalian konsultasi soal kulit anjing saya. Dokternya menjelaskan dengan jelas.</blockquote>
+          <figcaption><span class="mini">BS</span><span><b>Bayu S.</b>Pemilik golden retriever</span></figcaption>
+        </figure>
+        <figure class="quote">
+          <div class="stars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div>
+          <blockquote>Poin member lumayan banget. Makanan kucing saya beli di Shopee PawWell, poinnya tetap masuk.</blockquote>
+          <figcaption><span class="mini">DK</span><span><b>Dewi K.</b>Member sejak 2025</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="band">
+      <svg class="paws" viewBox="0 0 64 64" aria-hidden="true"><use href="#paw"/></svg>
+      <div>
+        <h2>Gabung PawWell Member</h2>
+        <p>Diskon 10% semua produk, satu kali grooming basic setiap bulan, dan poin ganda. Rp199.000 per bulan.</p>
+      </div>
+      <a class="btn btn-accent" href="#contact">Daftar member</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============ NEWS ============ -->
+<section id="news">
+  <div class="wrap">
+    <div class="head">
+      <h2>News</h2>
+      <p>Kabar terbaru dan tips merawat hewan dari tim PawWell.</p>
+    </div>
+    <div class="news">
+      <article class="post">
+        <div class="cover" aria-hidden="true"><svg viewBox="0 0 64 64"><use href="#paw"/></svg></div>
+        <div class="body">
+          <div class="meta"><span class="tag">Pengumuman</span>2 November 2026</div>
+          <h3 style="font-size:1.45rem">PawWell membuka klinik dan grooming center kedua</h3>
+          <p>Klinik baru dilengkapi ruang grooming terpisah untuk anjing dan kucing, sehingga hewan lebih tenang selama dirawat.</p>
+          <details><summary>Baca selengkapnya</summary><p>Selama bulan pembukaan, setiap layanan grooming mendapat pemeriksaan kesehatan dasar gratis oleh dokter hewan kami. Booking bisa lewat aplikasi, website, atau langsung di toko.</p></details>
+        </div>
+      </article>
+      <div class="news-col">
+        <article class="post"><div class="body">
+          <div class="meta"><span class="tag">Promo</span>28 Oktober 2026</div>
+          <h3>Poin member kini berlaku di marketplace</h3>
+          <p>Belanja di toko resmi PawWell di Shopee dan Tokopedia ikut menambah poin member.</p>
+          <details><summary>Baca selengkapnya</summary><p>Hubungkan akun member di aplikasi, lalu masukkan nomor pesanan. Poin masuk paling lambat 2 hari setelah pesanan selesai.</p></details>
+        </div></article>
+        <article class="post"><div class="body">
+          <div class="meta"><span class="tag">Tips</span>20 Oktober 2026</div>
+          <h3>Seberapa sering kucing perlu dimandikan?</h3>
+          <p>Kucing rumahan umumnya cukup dimandikan 1–2 bulan sekali, tergantung jenis bulu dan aktivitasnya.</p>
+          <details><summary>Baca selengkapnya</summary><p>Kucing berbulu panjang perlu disisir setiap hari. Gunakan sampo khusus kucing, karena sampo manusia bisa membuat kulitnya kering.</p></details>
+        </div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCT ============ -->
+<section id="product" class="alt">
+  <div class="wrap">
+    <div class="head">
+      <h2>Product</h2>
+      <p>Produk pilihan tersedia di toko, website, aplikasi, Shopee, dan Tokopedia.</p>
+    </div>
+    <div class="subhead"><h3>Produk perawatan</h3><p>Makanan, vitamin, perawatan, dan aksesoris.</p></div>
+    <div class="products">
+      <!-- 1. Makanan kering anjing -->
+      <article class="product" data-id="dogfood" data-name="Makanan Kering Anjing Dewasa 1,5 kg" data-price="115000" data-was="135000">
+        <span class="ribbon">Terlaris</span>
+        <div class="pic sand" role="img" aria-label="Kemasan makanan kering anjing PawWell">
+          <svg viewBox="0 0 240 180">
+            <ellipse cx="120" cy="164" rx="78" ry="8" fill="#000" opacity=".08"/>
+            <g class="item">
+              <path d="M80 42 L160 42 L170 160 L70 160 Z" fill="#3F5A3C"/>
+              <path d="M80 42 L86 24 L154 24 L160 42 Z" fill="#2F4A2E"/>
+              <path d="M86 24 l6 -5 6 5 6 -5 6 5 6 -5 6 5 6 -5 6 5 6 -5 6 5 6 -5 6 5" fill="none" stroke="#2F4A2E" stroke-width="3" stroke-linejoin="round"/>
+              <rect x="88" y="60" width="64" height="66" rx="10" fill="#FAF7EF"/>
+              <use href="#paw" x="106" y="66" width="28" height="28" fill="#E3A43A"/>
+              <text x="120" y="108" text-anchor="middle" font-size="10" font-weight="800" fill="#2F4A2E" font-family="Plus Jakarta Sans, Segoe UI, sans-serif">PawWell</text>
+              <text x="120" y="119" text-anchor="middle" font-size="7.2" font-weight="600" fill="#5B6756" font-family="Plus Jakarta Sans, Segoe UI, sans-serif">Dog Adult 1,5 kg</text>
+              <rect x="88" y="136" width="64" height="9" rx="4.5" fill="#E3A43A"/>
+            </g>
+            <g class="bits" fill="#B5793B">
+              <ellipse cx="184" cy="156" rx="8" ry="6"/><ellipse cx="199" cy="159" rx="7" ry="5"/><ellipse cx="191" cy="146" rx="6" ry="5"/>
+              <ellipse cx="54" cy="158" rx="7" ry="5"/><ellipse cx="42" cy="155" rx="6" ry="5"/>
+            </g>
+          </svg>
+        </div>
+        <div class="info">
+          <h3>Makanan Kering Anjing Dewasa 1,5 kg</h3>
+          <span class="now">Rp115.000</span>
+          <div class="was-row"><s>Rp135.000</s><span class="off">-15%</span></div>
+          <div class="tags"><span class="ship"><svg class="ic"><use href="#i-truck"/></svg>Gratis Ongkir</span><span class="cod">COD</span></div>
+          <div class="stats"><svg aria-hidden="true"><use href="#star"/></svg><b>4,9</b><span class="sep"></span>1rb+ terjual</div>
+          <div class="loc"><svg class="ic"><use href="#i-pin"/></svg>Jakarta Selatan</div>
+          <div class="ctas">
+            <button type="button" class="add" data-add aria-label="Tambah Makanan Kering Anjing Dewasa 1,5 kg ke keranjang"><svg class="ic"><use href="#i-cart"/></svg>Keranjang</button>
+            <button type="button" class="buy-now" data-buy>Beli</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. Makanan basah kucing -->
+      <article class="product" data-id="catwet" data-name="Makanan Basah Kucing Tuna 85 g" data-price="12500" data-was="15000">
+        <span class="ribbon">Terlaris</span>
+        <div class="pic" role="img" aria-label="Kaleng makanan basah kucing rasa tuna">
+          <svg viewBox="0 0 240 180">
+            <ellipse cx="120" cy="164" rx="80" ry="8" fill="#000" opacity=".08"/>
+            <g class="item">
+              <!-- back can -->
+              <ellipse cx="160" cy="152" rx="28" ry="7" fill="#6E8565"/>
+              <rect x="132" y="96" width="56" height="56" fill="#8FA685"/>
+              <rect x="132" y="112" width="56" height="24" fill="#FAF7EF"/>
+              <ellipse cx="160" cy="96" rx="28" ry="7" fill="#C9C3B3"/>
+              <ellipse cx="160" cy="96" rx="23" ry="5" fill="#DDD8CA"/>
+              <!-- front can -->
+              <ellipse cx="104" cy="154" rx="36" ry="9" fill="#B9852E"/>
+              <rect x="68" y="78" width="72" height="76" fill="#E3A43A"/>
+              <rect x="68" y="98" width="72" height="36" fill="#FAF7EF"/>
+              <path d="M84 116 q13 -13 28 0 q-15 13 -28 0z" fill="#3F5A3C"/>
+              <path d="M112 116 l10 -7 v14z" fill="#3F5A3C"/>
+              <circle cx="92" cy="114" r="2" fill="#FAF7EF"/>
+              <ellipse cx="104" cy="78" rx="36" ry="9" fill="#C9C3B3"/>
+              <ellipse cx="104" cy="78" rx="30" ry="6.5" fill="#DDD8CA"/>
+              <path d="M96 76 h16" stroke="#9E988A" stroke-width="3" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+        <div class="info">
+          <h3>Makanan Basah Kucing Tuna 85 g</h3>
+          <span class="now">Rp12.500</span>
+          <div class="was-row"><s>Rp15.000</s><span class="off">-17%</span></div>
+          <div class="tags"><span class="ship"><svg class="ic"><use href="#i-truck"/></svg>Gratis Ongkir</span><span class="cod">COD</span></div>
+          <div class="stats"><svg aria-hidden="true"><use href="#star"/></svg><b>4,8</b><span class="sep"></span>2,4rb terjual</div>
+          <div class="loc"><svg class="ic"><use href="#i-pin"/></svg>Jakarta Selatan</div>
+          <div class="ctas">
+            <button type="button" class="add" data-add aria-label="Tambah Makanan Basah Kucing Tuna 85 g ke keranjang"><svg class="ic"><use href="#i-cart"/></svg>Keranjang</button>
+            <button type="button" class="buy-now" data-buy>Beli</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. Multivitamin -->
+      <article class="product" data-id="multivit" data-name="Multivitamin Bulu &amp; Kulit" data-price="75000" data-was="89000">
+        <div class="pic sand" role="img" aria-label="Botol multivitamin bulu dan kulit">
+          <svg viewBox="0 0 240 180">
+            <ellipse cx="120" cy="164" rx="70" ry="8" fill="#000" opacity=".08"/>
+            <g class="item">
+              <rect x="94" y="28" width="52" height="24" rx="6" fill="#FAF7EF" stroke="#D9D3BE" stroke-width="2"/>
+              <path d="M104 32 v16 M112 32 v16 M120 32 v16 M128 32 v16 M136 32 v16" stroke="#D9D3BE" stroke-width="2"/>
+              <rect x="100" y="50" width="40" height="12" rx="3" fill="#9A5F20"/>
+              <rect x="86" y="60" width="68" height="98" rx="16" fill="#B8742A"/>
+              <rect x="86" y="86" width="68" height="46" fill="#FAF7EF"/>
+              <path d="M110 98 c8 0 14 6 14 14 c-8 0 -14 -6 -14 -14z" fill="#8FA685"/>
+              <path d="M110 98 l14 14" stroke="#3F5A3C" stroke-width="1.5"/>
+              <text x="120" y="126" text-anchor="middle" font-size="8.5" font-weight="800" fill="#2F4A2E" font-family="Plus Jakarta Sans, Segoe UI, sans-serif">Multivit</text>
+              <rect x="94" y="66" width="8" height="16" rx="4" fill="#fff" opacity=".25"/>
+            </g>
+            <g class="bits">
+              <g transform="translate(176 150) rotate(-25)"><path d="M0 -6 h-9 a6 6 0 0 0 0 12 h9z" fill="#E3A43A"/><path d="M0 -6 h9 a6 6 0 0 1 0 12 h-9z" fill="#3F5A3C"/></g>
+              <g transform="translate(196 158) rotate(15)"><path d="M0 -6 h-9 a6 6 0 0 0 0 12 h9z" fill="#E3A43A"/><path d="M0 -6 h9 a6 6 0 0 1 0 12 h-9z" fill="#3F5A3C"/></g>
+              <g transform="translate(58 156) rotate(40)"><path d="M0 -6 h-9 a6 6 0 0 0 0 12 h9z" fill="#E3A43A"/><path d="M0 -6 h9 a6 6 0 0 1 0 12 h-9z" fill="#3F5A3C"/></g>
+            </g>
+          </svg>
+        </div>
+        <div class="info">
+          <h3>Multivitamin Bulu &amp; Kulit</h3>
+          <span class="now">Rp75.000</span>
+          <div class="was-row"><s>Rp89.000</s><span class="off">-16%</span></div>
+          <div class="tags"><span class="ship"><svg class="ic"><use href="#i-truck"/></svg>Gratis Ongkir</span><span class="cod">COD</span></div>
+          <div class="stats"><svg aria-hidden="true"><use href="#star"/></svg><b>4,9</b><span class="sep"></span>860 terjual</div>
+          <div class="loc"><svg class="ic"><use href="#i-pin"/></svg>Jakarta Selatan</div>
+          <div class="ctas">
+            <button type="button" class="add" data-add aria-label="Tambah Multivitamin Bulu &amp; Kulit ke keranjang"><svg class="ic"><use href="#i-cart"/></svg>Keranjang</button>
+            <button type="button" class="buy-now" data-buy>Beli</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. Sampo -->
+      <article class="product" data-id="shampoo" data-name="Sampo Hipoalergenik 250 ml" data-price="58000">
+        <div class="pic" role="img" aria-label="Botol pump sampo hipoalergenik">
+          <svg viewBox="0 0 240 180">
+            <ellipse cx="120" cy="164" rx="62" ry="8" fill="#000" opacity=".08"/>
+            <g class="item">
+              <rect x="106" y="26" width="38" height="11" rx="3" fill="#2F4A2E"/>
+              <rect x="138" y="28" width="22" height="7" rx="3.5" fill="#2F4A2E"/>
+              <rect x="116" y="36" width="8" height="22" fill="#2F4A2E"/>
+              <rect x="106" y="56" width="28" height="16" rx="3" fill="#2F4A2E"/>
+              <rect x="90" y="70" width="60" height="90" rx="18" fill="#8FA685"/>
+              <rect x="99" y="92" width="42" height="48" rx="9" fill="#FAF7EF"/>
+              <path d="M120 100 c7 9 10 13 10 18 a10 10 0 0 1 -20 0 c0 -5 3 -9 10 -18z" fill="#8FA685"/>
+              <rect x="97" y="78" width="7" height="14" rx="3.5" fill="#fff" opacity=".3"/>
+            </g>
+            <g class="bits" fill="none" stroke="#FAF7EF" stroke-width="3">
+              <circle cx="66" cy="84" r="11"/><circle cx="52" cy="112" r="6"/><circle cx="178" cy="70" r="9"/><circle cx="186" cy="102" r="5"/>
+            </g>
+          </svg>
+        </div>
+        <div class="info">
+          <h3>Sampo Hipoalergenik 250 ml</h3>
+          <span class="now">Rp58.000</span>
+          <div class="was-row"></div>
+          <div class="tags"><span class="ship"><svg class="ic"><use href="#i-truck"/></svg>Gratis Ongkir</span><span class="cod">COD</span></div>
+          <div class="stats"><svg aria-hidden="true"><use href="#star"/></svg><b>4,8</b><span class="sep"></span>530 terjual</div>
+          <div class="loc"><svg class="ic"><use href="#i-pin"/></svg>Jakarta Selatan</div>
+          <div class="ctas">
+            <button type="button" class="add" data-add aria-label="Tambah Sampo Hipoalergenik 250 ml ke keranjang"><svg class="ic"><use href="#i-cart"/></svg>Keranjang</button>
+            <button type="button" class="buy-now" data-buy>Beli</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. Kalung nama -->
+      <article class="product" data-id="collar" data-name="Kalung Nama Custom" data-price="49000" data-was="65000">
+        <span class="ribbon">Bisa custom</span>
+        <div class="pic sand" role="img" aria-label="Kalung hewan dengan liontin tulang bertuliskan nama">
+          <svg viewBox="0 0 240 180">
+            <ellipse cx="120" cy="166" rx="66" ry="7" fill="#000" opacity=".08"/>
+            <g class="item">
+              <ellipse cx="120" cy="76" rx="64" ry="30" fill="none" stroke="#3F5A3C" stroke-width="15"/>
+              <ellipse cx="120" cy="76" rx="64" ry="30" fill="none" stroke="#FAF7EF" stroke-width="1.5" stroke-dasharray="4 4" opacity=".7"/>
+              <rect x="47" y="64" width="20" height="24" rx="4" fill="none" stroke="#E3A43A" stroke-width="4"/>
+              <path d="M57 64 v24" stroke="#E3A43A" stroke-width="3"/>
+              <path d="M111 108 a9 9 0 0 0 18 0" fill="none" stroke="#B9B3A3" stroke-width="4"/>
+              <path d="M120 117 v10" stroke="#B9B3A3" stroke-width="3"/>
+              <g class="tag">
+                <g transform="translate(120 142)" fill="#E3A43A">
+                  <rect x="-24" y="-9" width="48" height="18" rx="9"/>
+                  <circle cx="-24" cy="-6" r="7.5"/><circle cx="-24" cy="6" r="7.5"/>
+                  <circle cx="24" cy="-6" r="7.5"/><circle cx="24" cy="6" r="7.5"/>
+                </g>
+                <text x="120" y="146" text-anchor="middle" font-size="11" font-weight="800" fill="#22180A" font-family="Plus Jakarta Sans, Segoe UI, sans-serif">Milo</text>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="info">
+          <h3>Kalung Nama Custom</h3>
+          <span class="now">Rp49.000</span>
+          <div class="was-row"><s>Rp65.000</s><span class="off">-25%</span></div>
+          <div class="tags"><span class="ship"><svg class="ic"><use href="#i-truck"/></svg>Gratis Ongkir</span></div>
+          <div class="stats"><svg aria-hidden="true"><use href="#star"/></svg><b>5,0</b><span class="sep"></span>320 terjual</div>
+          <div class="loc"><svg class="ic"><use href="#i-pin"/></svg>Jakarta Selatan</div>
+          <div class="ctas">
+            <button type="button" class="add" data-add aria-label="Tambah Kalung Nama Custom ke keranjang"><svg class="ic"><use href="#i-cart"/></svg>Keranjang</button>
+            <button type="button" class="buy-now" data-buy>Beli</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6. Kasur -->
+      <article class="product" data-id="bed" data-name="Kasur Bulat Empuk" data-price="189000" data-was="229000">
+        <div class="pic" role="img" aria-label="Kasur bulat empuk untuk hewan dengan mainan tulang">
+          <svg viewBox="0 0 240 180">
+            <ellipse cx="120" cy="150" rx="96" ry="14" fill="#000" opacity=".08"/>
+            <g class="item">
+              <ellipse cx="116" cy="128" rx="86" ry="30" fill="#B49C78"/>
+              <ellipse cx="116" cy="112" rx="86" ry="32" fill="#E8DCC6"/>
+              <ellipse cx="116" cy="114" rx="60" ry="19" fill="#C9B79A"/>
+              <ellipse cx="116" cy="118" rx="56" ry="16" fill="#8FA685"/>
+              <g fill="#FAF7EF" opacity=".55">
+                <use href="#paw" x="84" y="108" width="14" height="14"/>
+                <use href="#paw" x="110" y="118" width="12" height="12"/>
+                <use href="#paw" x="134" y="106" width="14" height="14"/>
+              </g>
+            </g>
+            <g class="bits"><g transform="translate(196 148) rotate(-20)" fill="#FAF7EF" stroke="#B49C78" stroke-width="2">
+              <rect x="-16" y="-5" width="32" height="10" rx="5"/>
+              <circle cx="-17" cy="-5" r="6"/><circle cx="-17" cy="5" r="6"/><circle cx="17" cy="-5" r="6"/><circle cx="17" cy="5" r="6"/>
+            </g></g>
+          </svg>
+        </div>
+        <div class="info">
+          <h3>Kasur Bulat Empuk</h3>
+          <span class="now">Rp189.000</span>
+          <div class="was-row"><s>Rp229.000</s><span class="off">-17%</span></div>
+          <div class="tags"><span class="ship"><svg class="ic"><use href="#i-truck"/></svg>Gratis Ongkir</span><span class="cod">COD</span></div>
+          <div class="stats"><svg aria-hidden="true"><use href="#star"/></svg><b>4,9</b><span class="sep"></span>410 terjual</div>
+          <div class="loc"><svg class="ic"><use href="#i-pin"/></svg>Jakarta Selatan</div>
+          <div class="ctas">
+            <button type="button" class="add" data-add aria-label="Tambah Kasur Bulat Empuk ke keranjang"><svg class="ic"><use href="#i-cart"/></svg>Keranjang</button>
+            <button type="button" class="buy-now" data-buy>Beli</button>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="subhead gap"><h3>Layanan perawatan</h3><p>Pilih layanan, lalu booking jadwalnya lewat keranjang.</p></div>
+    <div class="products svc-grid">
+      <article class="product svc" data-id="svc-basic" data-kind="service" data-name="Grooming Basic" data-price="85000">
+        <span class="ribbon">Paling laris</span>
+        <div class="pic" role="img" aria-label="Ilustrasi layanan Grooming Basic">
+          <svg viewBox="0 0 240 180"><ellipse cx="120" cy="164" rx="78" ry="8" fill="#000" opacity=".08"/>
+            <g class="item">
+              <path d="M98 58 C86 50 82 78 92 86 L100 70Z" fill="#B98A4E"/><path d="M142 58 C154 50 158 78 148 86 L140 70Z" fill="#B98A4E"/>
+              <circle cx="120" cy="74" r="27" fill="#E8BE7E"/>
+              <ellipse cx="120" cy="86" rx="15" ry="11" fill="#F6E2BD"/>
+              <circle cx="110" cy="70" r="3.5" fill="#2D2A24"/><circle cx="130" cy="70" r="3.5" fill="#2D2A24"/>
+              <ellipse cx="120" cy="81" rx="5" ry="3.5" fill="#2D2A24"/>
+              <path d="M50 96 h140 v14 a40 40 0 0 1 -40 40 h-60 a40 40 0 0 1 -40 -40z" fill="#FAF7EF" stroke="#D9D3BE" stroke-width="2"/>
+              <path d="M74 148 l-6 12 M166 148 l6 12" stroke="#3F5A3C" stroke-width="5" stroke-linecap="round"/>
+              <g fill="#FFFFFF" stroke="#8FA685" stroke-width="2.5"><circle cx="66" cy="90" r="11"/><circle cx="86" cy="88" r="9"/><circle cx="102" cy="92" r="7"/><circle cx="146" cy="91" r="8"/><circle cx="162" cy="88" r="11"/><circle cx="180" cy="92" r="8"/></g>
+              <rect x="44" y="92" width="152" height="10" rx="5" fill="#8FA685"/>
+            </g>
+            <g class="bits" fill="none" stroke="#8FA685" stroke-width="2.5"><circle cx="58" cy="52" r="7"/><circle cx="190" cy="48" r="9"/><circle cx="176" cy="26" r="4.5"/><circle cx="72" cy="30" r="4"/></g></svg>
+        </div>
+        <div class="info">
+          <h3>Grooming Basic</h3>
+          <p class="desc">Perawatan rutin supaya hewan tetap bersih, wangi, dan nyaman.</p>
+          <ul class="incl"><li><svg class="ic"><use href="#i-check"/></svg>Mandi dengan sampo sesuai jenis bulu</li><li><svg class="ic"><use href="#i-check"/></svg>Pengeringan dengan blower</li><li><svg class="ic"><use href="#i-check"/></svg>Sisir bulu dan bersih telinga</li><li><svg class="ic"><use href="#i-check"/></svg>Potong dan rapikan kuku</li></ul>
+          <span class="from">Mulai dari</span>
+          <span class="now">Rp85.000</span>
+          <div class="stats"><svg aria-hidden="true"><use href="#star"/></svg><b>4,9</b><span class="sep"></span>1,8rb kali dipesan</div>
+          <div class="dur"><svg class="ic"><use href="#i-clock"/></svg>Sekitar 60 menit</div>
+          <div class="ctas">
+            <button type="button" class="add" data-add aria-label="Tambah Grooming Basic ke keranjang"><svg class="ic"><use href="#i-cart"/></svg>Keranjang</button>
+            <button type="button" class="buy-now" data-buy>Booking</button>
+          </div>
+        </div>
+      </article>
+      <article class="product svc" data-id="svc-full" data-kind="service" data-name="Grooming Lengkap" data-price="150000">
+        <div class="pic sand" role="img" aria-label="Ilustrasi layanan Grooming Lengkap">
+          <svg viewBox="0 0 240 180"><ellipse cx="120" cy="164" rx="78" ry="8" fill="#000" opacity=".08"/>
+            <g class="item">
+              <g transform="translate(120 98) rotate(-28)">
+                <rect x="-62" y="-14" width="124" height="16" rx="5" fill="#E3A43A"/>
+                <path d="M-54 2v18M-46 2v18M-38 2v18M-30 2v18M-22 2v18M-14 2v18M-6 2v18M2 2v18M10 2v18M18 2v18M26 2v18M34 2v18M42 2v18M50 2v18" stroke="#E3A43A" stroke-width="4" stroke-linecap="round"/>
+              </g>
+              <g transform="translate(116 94) rotate(32)">
+                <path d="M-2 -7 L72 -1 L-2 5z" fill="#C9C3B3"/>
+                <path d="M-2 7 L72 1 L-2 -5z" fill="#B0AA9A"/>
+                <circle cx="-26" cy="-16" r="14" fill="none" stroke="#3F5A3C" stroke-width="7"/>
+                <circle cx="-26" cy="16" r="14" fill="none" stroke="#3F5A3C" stroke-width="7"/>
+                <circle cx="0" cy="0" r="4.5" fill="#2F4A2E"/>
+              </g>
+            </g>
+            <g class="bits" fill="#E3A43A">
+              <path d="M192 40 l3.5 8.5 8.5 3.5 -8.5 3.5 -3.5 8.5 -3.5 -8.5 -8.5 -3.5 8.5 -3.5z"/>
+              <path d="M50 56 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5z"/>
+              <path d="M188 130 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5z"/>
+            </g></svg>
+        </div>
+        <div class="info">
+          <h3>Grooming Lengkap</h3>
+          <p class="desc">Paket lengkap untuk hewan yang perlu tampil rapi dari ujung kepala sampai ekor.</p>
+          <ul class="incl"><li><svg class="ic"><use href="#i-check"/></svg>Semua isi Grooming Basic</li><li><svg class="ic"><use href="#i-check"/></svg>Potong dan rapikan bulu sesuai gaya</li><li><svg class="ic"><use href="#i-check"/></svg>Pembersihan kelenjar anal</li><li><svg class="ic"><use href="#i-check"/></svg>Parfum khusus hewan dan bandana</li></ul>
+          <span class="from">Mulai dari</span>
+          <span class="now">Rp150.000</span>
+          <div class="stats"><svg aria-hidden="true"><use href="#star"/></svg><b>4,9</b><span class="sep"></span>950 kali dipesan</div>
+          <div class="dur"><svg class="ic"><use href="#i-clock"/></svg>Sekitar 90–120 menit</div>
+          <div class="ctas">
+            <button type="button" class="add" data-add aria-label="Tambah Grooming Lengkap ke keranjang"><svg class="ic"><use href="#i-cart"/></svg>Keranjang</button>
+            <button type="button" class="buy-now" data-buy>Booking</button>
+          </div>
+        </div>
+      </article>
+      <article class="product svc" data-id="svc-flea" data-kind="service" data-name="Mandi Kutu &amp; Jamur" data-price="120000">
+        <div class="pic" role="img" aria-label="Ilustrasi layanan Mandi Kutu &amp; Jamur">
+          <svg viewBox="0 0 240 180"><ellipse cx="120" cy="164" rx="78" ry="8" fill="#000" opacity=".08"/>
+            <g class="item">
+              <rect x="100" y="36" width="40" height="15" rx="4" fill="#E3A43A"/>
+              <rect x="106" y="50" width="28" height="10" fill="#C98E2E"/>
+              <rect x="88" y="58" width="64" height="98" rx="14" fill="#3F5A3C"/>
+              <rect x="96" y="84" width="48" height="46" rx="8" fill="#FAF7EF"/>
+              <path d="M114 95 h12 v9 h9 v12 h-9 v9 h-12 v-9 h-9 v-12 h9z" fill="#8FA685"/>
+              <rect x="94" y="64" width="7" height="14" rx="3.5" fill="#fff" opacity=".25"/>
+            </g>
+            <g class="bits">
+              <g transform="translate(52 128) rotate(-12)" stroke="#B0AA9A" stroke-width="2.2" stroke-linecap="round">
+                <rect x="-24" y="-16" width="48" height="9" rx="3" fill="#B0AA9A" stroke="none"/>
+                <path d="M-20 -7v20M-15 -7v20M-10 -7v20M-5 -7v20M0 -7v20M5 -7v20M10 -7v20M15 -7v20M20 -7v20"/>
+              </g>
+              <circle cx="184" cy="118" r="16" fill="#FFFFFF" fill-opacity=".55" stroke="#3F5A3C" stroke-width="5"/>
+              <path d="M195 130 l14 14" stroke="#3F5A3C" stroke-width="7" stroke-linecap="round"/>
+              <circle cx="184" cy="118" r="3.5" fill="#B5793B"/>
+            </g></svg>
+        </div>
+        <div class="info">
+          <h3>Mandi Kutu &amp; Jamur</h3>
+          <p class="desc">Mandi khusus untuk hewan yang gatal, berkutu, atau mengalami jamur kulit.</p>
+          <ul class="incl"><li><svg class="ic"><use href="#i-check"/></svg>Sampo medis anti kutu dan jamur</li><li><svg class="ic"><use href="#i-check"/></svg>Sisir kutu sampai ke telurnya</li><li><svg class="ic"><use href="#i-check"/></svg>Pengecekan kondisi kulit</li><li><svg class="ic"><use href="#i-check"/></svg>Saran perawatan lanjutan di rumah</li></ul>
+          <span class="from">Mulai dari</span>
+          <span class="now">Rp120.000</span>
+          <div class="stats"><svg aria-hidden="true"><use href="#star"/></svg><b>4,8</b><span class="sep"></span>640 kali dipesan</div>
+          <div class="dur"><svg class="ic"><use href="#i-clock"/></svg>Sekitar 75 menit</div>
+          <div class="ctas">
+            <button type="button" class="add" data-add aria-label="Tambah Mandi Kutu &amp; Jamur ke keranjang"><svg class="ic"><use href="#i-cart"/></svg>Keranjang</button>
+            <button type="button" class="buy-now" data-buy>Booking</button>
+          </div>
+        </div>
+      </article>
+      <article class="product svc" data-id="svc-vet" data-kind="service" data-name="Konsultasi Dokter Hewan" data-price="100000">
+        <div class="pic sand" role="img" aria-label="Ilustrasi layanan Konsultasi Dokter Hewan">
+          <svg viewBox="0 0 240 180"><ellipse cx="120" cy="164" rx="78" ry="8" fill="#000" opacity=".08"/>
+            <g class="item">
+              <rect x="74" y="36" width="88" height="120" rx="10" fill="#FAF7EF" stroke="#D9D3BE" stroke-width="2"/>
+              <rect x="98" y="28" width="40" height="16" rx="5" fill="#3F5A3C"/>
+              <use href="#paw" x="88" y="56" width="20" height="20" fill="#8FA685"/>
+              <path d="M114 62 h34 M114 72 h24 M88 90 h56 M88 102 h44" stroke="#D9D3BE" stroke-width="4" stroke-linecap="round"/>
+              <path d="M88 128 h14 l6 -12 l8 22 l6 -12 h22" fill="none" stroke="#E3A43A" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+              <path d="M150 54 c34 0 44 34 32 64 c-7 18 -28 22 -38 8" fill="none" stroke="#3F5A3C" stroke-width="6" stroke-linecap="round"/>
+              <circle cx="150" cy="54" r="6" fill="#3F5A3C"/>
+              <circle cx="142" cy="128" r="12" fill="#C9C3B3" stroke="#3F5A3C" stroke-width="4"/>
+            </g>
+            <g class="bits"><path d="M196 44 c0-6 8-8 10-2 c2-6 10-4 10 2 c0 7 -10 12 -10 12 s-10-5-10-12z" fill="#E3A43A"/></g></svg>
+        </div>
+        <div class="info">
+          <h3>Konsultasi Dokter Hewan</h3>
+          <p class="desc">Pemeriksaan kesehatan oleh dokter hewan PawWell yang berpengalaman.</p>
+          <ul class="incl"><li><svg class="ic"><use href="#i-check"/></svg>Pemeriksaan suhu, berat, mata, telinga, dan kulit</li><li><svg class="ic"><use href="#i-check"/></svg>Diskusi keluhan dan riwayat kesehatan</li><li><svg class="ic"><use href="#i-check"/></svg>Saran nutrisi dan jadwal vaksin</li><li><svg class="ic"><use href="#i-check"/></svg>Resep obat bila perlu (obat dibayar terpisah)</li></ul>
+          <span class="from">Mulai dari</span>
+          <span class="now">Rp100.000</span>
+          <div class="stats"><svg aria-hidden="true"><use href="#star"/></svg><b>4,9</b><span class="sep"></span>1,2rb kali dipesan</div>
+          <div class="dur"><svg class="ic"><use href="#i-clock"/></svg>Sekitar 30 menit</div>
+          <div class="ctas">
+            <button type="button" class="add" data-add aria-label="Tambah Konsultasi Dokter Hewan ke keranjang"><svg class="ic"><use href="#i-cart"/></svg>Keranjang</button>
+            <button type="button" class="buy-now" data-buy>Booking</button>
+          </div>
+        </div>
+      </article>
+      <article class="product svc" data-id="svc-member" data-kind="service" data-name="PawWell Member" data-price="199000">
+        <span class="ribbon">Paling hemat</span>
+        <div class="pic" role="img" aria-label="Ilustrasi layanan PawWell Member">
+          <svg viewBox="0 0 240 180"><ellipse cx="120" cy="164" rx="78" ry="8" fill="#000" opacity=".08"/>
+            <g class="item">
+              <g transform="rotate(-8 120 94)">
+                <rect x="50" y="48" width="140" height="90" rx="12" fill="#3F5A3C"/>
+                <rect x="50" y="98" width="140" height="10" fill="#2F4A2E"/>
+                <use href="#paw" x="62" y="58" width="24" height="24" fill="#E3A43A"/>
+                <text x="92" y="76" font-size="13" font-weight="800" fill="#FAF7EF" font-family="Plus Jakarta Sans, Segoe UI, sans-serif">PawWell</text>
+                <text x="62" y="128" font-size="10" font-weight="600" fill="#FAF7EF" opacity=".8" font-family="Plus Jakarta Sans, Segoe UI, sans-serif">Member</text>
+                <rect x="152" y="114" width="26" height="16" rx="4" fill="#E3A43A"/>
+              </g>
+            </g>
+            <g class="bits" fill="#E3A43A">
+              <path d="M200 40 l3.5 8.5 8.5 3.5 -8.5 3.5 -3.5 8.5 -3.5 -8.5 -8.5 -3.5 8.5 -3.5z"/>
+              <path d="M40 140 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5z"/>
+            </g></svg>
+        </div>
+        <div class="info">
+          <h3>PawWell Member</h3>
+          <p class="desc">Langganan bulanan untuk pemilik yang rutin merawat hewannya.</p>
+          <ul class="incl"><li><svg class="ic"><use href="#i-check"/></svg>1× Grooming Basic setiap bulan</li><li><svg class="ic"><use href="#i-check"/></svg>Diskon 10% untuk semua produk</li><li><svg class="ic"><use href="#i-check"/></svg>Poin ganda setiap transaksi</li><li><svg class="ic"><use href="#i-check"/></svg>Prioritas jadwal booking</li></ul>
+          <span class="from">Harga langganan</span>
+          <span class="now">Rp199.000 <span class="per">/bulan</span></span>
+          <div class="stats"><svg aria-hidden="true"><use href="#star"/></svg><b>5,0</b><span class="sep"></span>480 member aktif</div>
+          <div class="dur"><svg class="ic"><use href="#i-clock"/></svg>Berlaku 30 hari</div>
+          <div class="ctas">
+            <button type="button" class="add" data-add aria-label="Tambah PawWell Member ke keranjang"><svg class="ic"><use href="#i-cart"/></svg>Keranjang</button>
+            <button type="button" class="buy-now" data-buy>Booking</button>
+          </div>
+        </div>
+      </article>
+    </div>
+    <p class="note">Harga grooming menyesuaikan ukuran dan kondisi bulu hewan.</p>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <h2>About Us</h2>
+        <p>PawWell adalah perusahaan jasa dan produk perawatan hewan. Kami lahir dari keresahan sederhana: merawat hewan peliharaan sering berarti pergi ke banyak tempat, mandi di satu salon, belanja di toko lain, lalu konsultasi di klinik yang berbeda.</p>
+        <p>Di PawWell semuanya ada di satu tempat. Pemilik anjing dan kucing mendapatkan perawatan, produk berkualitas, dan saran dokter hewan, baik datang langsung maupun lewat aplikasi.</p>
+        <h3 style="margin-top:2rem">Untuk siapa kami bekerja</h3>
+        <div class="segments">
+          <span>Pemilik anjing &amp; kucing usia 18–45 tahun</span>
+          <span>Warga perkotaan yang peduli kesehatan hewan</span>
+          <span>Keluarga dengan hewan peliharaan</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Visi</h3>
+        <p>Menjadi tempat perawatan hewan pilihan keluarga perkotaan di Indonesia.</p>
+        <h3>Misi</h3>
+        <ul>
+          <li>Memberikan pelayanan yang profesional, ramah, dan personal.</li>
+          <li>Menyediakan produk berkualitas dengan harga terjangkau.</li>
+          <li>Mengedukasi pemilik hewan lewat klinik dan media sosial.</li>
+        </ul>
+        <h3>Nilai kami</h3>
+        <p style="margin:0">Hewan sehat, pemilik tenang.</p>
+      </div>
+    </div>
+
+    <div class="partners">
+      <div class="partner"><svg class="ic"><use href="#i-steth"/></svg><h3>Dokter hewan &amp; klinik</h3><p>Rujukan untuk penanganan kesehatan lanjutan.</p></div>
+      <div class="partner"><svg class="ic"><use href="#i-bag"/></svg><h3>Supplier</h3><p>Makanan dan perlengkapan yang terjamin kualitasnya.</p></div>
+      <div class="partner"><svg class="ic"><use href="#i-users"/></svg><h3>Komunitas pecinta hewan</h3><p>Acara adopsi, edukasi, dan kegiatan bersama.</p></div>
+      <div class="partner"><svg class="ic"><use href="#i-cart"/></svg><h3>E-commerce &amp; pengiriman</h3><p>Belanja online dan pengiriman ke rumah.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MANAGEMENT ============ -->
+<section id="management" class="alt">
+  <div class="wrap">
+    <div class="head">
+      <h2>Management</h2>
+      <p>Tim yang memastikan setiap hewan dirawat dengan baik.</p>
+    </div>
+    <div class="team">
+      <article class="member lead"><div class="avatar">AP</div><h3>Anindya Putri</h3><div class="role">Direktur Utama</div><p>Memimpin arah bisnis dan pengembangan cabang.</p></article>
+      <article class="member"><div class="avatar">RS</div><h3>drh. Raka Santoso</h3><div class="role">Kepala Dokter Hewan</div><p>Mengawasi klinik dan standar kesehatan.</p></article>
+      <article class="member"><div class="avatar">ML</div><h3>Maya Lestari</h3><div class="role">Kepala Grooming</div><p>Melatih groomer dan menjaga kualitas layanan.</p></article>
+      <article class="member"><div class="avatar">DH</div><h3>Dimas Hartono</h3><div class="role">Manajer Operasional</div><p>Mengelola stok, supplier, dan pengiriman.</p></article>
+      <article class="member"><div class="avatar">SN</div><h3>Salsa Nabila</h3><div class="role">Manajer Pemasaran</div><p>Menangani media sosial, marketplace, dan member.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" aria-labelledby="contactTitle">
+  <div class="wrap">
+    <div class="cta-panel">
+      <svg class="paw-bg paw-a" viewBox="0 0 64 64" aria-hidden="true"><use href="#paw"/></svg>
+      <svg class="paw-bg paw-b" viewBox="0 0 64 64" aria-hidden="true"><use href="#paw"/></svg>
+      <h2 id="contactTitle">Kapan terakhir hewanmu dimanja?</h2>
+      <p class="sub">Booking grooming, konsultasi dokter hewan, atau tanya soal produk. Ceritakan jenis dan ukuran hewanmu, kami bantu pilihkan perawatan yang pas.</p>
+      <div class="cta-actions">
+        <a class="btn btn-glow" href="https://wa.me/6281234567890?text=Halo%20PawWell%2C%20saya%20mau%20tanya%20soal%20layanan%20perawatan%20hewan." target="_blank" rel="noopener"><svg class="ic"><use href="#i-chat"/></svg>Chat di WhatsApp</a>
+        <a class="btn btn-ghost-dark" href="mailto:halo@pawwell.id?subject=Pertanyaan%20untuk%20PawWell"><svg class="ic"><use href="#i-mail"/></svg>Kirim email</a>
+      </div>
+      <ul class="socials">
+        <li><a href="https://instagram.com/pawwell.id" target="_blank" rel="noopener" aria-label="Instagram PawWell" title="Instagram"><svg class="ic"><use href="#i-camera"/></svg></a></li>
+        <li><a href="https://www.tiktok.com/@pawwell.id" target="_blank" rel="noopener" aria-label="TikTok PawWell" title="TikTok"><svg class="ic"><use href="#i-note"/></svg></a></li>
+        <li><a href="mailto:halo@pawwell.id" aria-label="Email halo@pawwell.id" title="Email"><svg class="ic"><use href="#i-mail"/></svg></a></li>
+        <li><a href="tel:+6281234567890" aria-label="Telepon 0812-3456-7890" title="Telepon"><svg class="ic"><use href="#i-phone"/></svg></a></li>
+        <li><a href="https://maps.google.com/?q=Jl.+Kenanga+Raya+No.+12+Jakarta+Selatan" target="_blank" rel="noopener" aria-label="Lihat lokasi di peta" title="Lokasi"><svg class="ic"><use href="#i-pin"/></svg></a></li>
+      </ul>
+      <div class="visit">
+        <span><svg class="ic"><use href="#i-pin"/></svg>Jl. Kenanga Raya No. 12, Jakarta Selatan</span>
+        <span><svg class="ic"><use href="#i-clock"/></svg>Senin–Sabtu 09.00–20.00, Minggu 10.00–17.00</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="logo" href="#home"><svg aria-hidden="true"><use href="#paw"/></svg>PawWell</a>
+        <p style="margin-top:1rem">Perusahaan jasa dan produk perawatan hewan. Hewan sehat, hidup lebih bahagia.</p>
+      </div>
+      <div>
+        <h3>Menu</h3>
+        <ul><li><a href="#home">Home</a></li><li><a href="#news">News</a></li><li><a href="#product">Product</a></li><li><a href="#about">About Us</a></li><li><a href="#management">Management</a></li><li><a href="#contact">Contact Us</a></li></ul>
+      </div>
+      <div>
+        <h3>Layanan</h3>
+        <ul><li>Grooming &amp; spa</li><li>Klinik dokter hewan</li><li>Pet shop</li><li>PawWell Member</li></ul>
+      </div>
+      <div>
+        <h3>Ikuti kami</h3>
+        <ul><li>Instagram @pawwell.id</li><li>TikTok @pawwell.id</li><li>Shopee: PawWell Official</li><li>Tokopedia: PawWell Official</li></ul>
+      </div>
+    </div>
+    <div class="copy"><span>© 2026 PawWell Pet Care Company</span><span>Jakarta, Indonesia</span></div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="cart" role="dialog" aria-modal="true" aria-labelledby="cartTitle" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 id="cartTitle">Keranjang <span id="cartTitleCount"></span></h2>
+    <button class="x" id="cartClose" type="button" aria-label="Tutup keranjang">×</button>
+  </div>
+  <ul class="cart-list" id="cartList"></ul>
+  <div class="summary" id="cartSummary">
+    <div class="ship-hint" id="shipHint"><svg class="ic"><use href="#i-truck"/></svg><span></span></div>
+    <div class="line"><span>Subtotal (<span id="sumQty">0</span> barang)</span><span id="sumSub">Rp0</span></div>
+    <div class="line save"><span>Kamu hemat</span><span id="sumSave">Rp0</span></div>
+    <div class="line"><span>Ongkos kirim</span><span id="sumShip">Rp0</span></div>
+    <div class="total"><span>Total</span><span id="sumTotal">Rp0</span></div>
+    <a class="btn btn-accent checkout" id="checkout" href="https://wa.me/6281234567890" target="_blank" rel="noopener">Checkout via WhatsApp</a>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg">Ditambahkan ke keranjang</span><button type="button" id="toastView">Lihat</button></div>
+
+<script>
+(function(){
+  var WA = "6281234567890";
+  var FREE_MIN = 50000, ONGKIR = 10000, KEY = "pawwell-cart";
+  var fmt = function(n){ return "Rp" + n.toLocaleString("id-ID"); };
+  var $ = function(id){ return document.getElementById(id); };
+
+  // Katalog dibaca langsung dari kartu produk
+  var catalog = {};
+  document.querySelectorAll(".product[data-id]").forEach(function(c){
+    catalog[c.dataset.id] = {
+      name: c.dataset.name,
+      price: +c.dataset.price,
+      was: c.dataset.was ? +c.dataset.was : 0,
+      svg: c.querySelector(".pic svg"),
+      service: c.dataset.kind === "service",
+      sand: c.querySelector(".pic").classList.contains("sand")
+    };
+  });
+
+  var cart = {};
+  try { cart = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e){ cart = {}; }
+  Object.keys(cart).forEach(function(k){ if(!catalog[k] || !(cart[k] > 0)) delete cart[k]; });
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(cart)); } catch(e){} }
+
+  var btn = $("cartBtn"), countEl = $("cartCount"), drawer = $("cart"), overlay = $("overlay");
+  var list = $("cartList"), summary = $("cartSummary"), checkout = $("checkout");
+
+  function render(){
+    var ids = Object.keys(cart), qty = 0, sub = 0, saved = 0, prodSub = 0;
+    ids.forEach(function(id){
+      var p = catalog[id]; qty += cart[id]; sub += p.price*cart[id];
+      if(!p.service) prodSub += p.price*cart[id];
+      if(p.was) saved += (p.was-p.price)*cart[id];
+    });
+
+    countEl.textContent = qty > 99 ? "99+" : qty;
+    countEl.hidden = qty === 0;
+    btn.setAttribute("aria-label", qty ? "Buka keranjang, " + qty + " barang" : "Buka keranjang, kosong");
+    $("cartTitleCount").textContent = qty ? "(" + qty + ")" : "";
+
+    list.innerHTML = "";
+    if(!ids.length){
+      list.innerHTML = '<li class="empty"><svg viewBox="0 0 64 64" aria-hidden="true"><use href="#paw"/></svg><p>Keranjangmu masih kosong. Yuk, pilih kebutuhan hewan kesayanganmu.</p><a class="btn btn-moss" href="#product" data-close>Belanja sekarang</a></li>';
+      summary.hidden = true;
+      return;
+    }
+    summary.hidden = false;
+
+    ids.forEach(function(id){
+      var p = catalog[id], q = cart[id];
+      var li = document.createElement("li");
+      li.className = "cart-item";
+      li.innerHTML =
+        '<div class="thumb' + (p.sand ? ' sand' : '') + '"></div>' +
+        '<div>' + (p.service ? '<span class="kind">Layanan</span>' : '') + '<p class="nm"></p>' +
+        '<div class="pr">' + fmt(p.price) + (p.was ? '<s>' + fmt(p.was) + '</s>' : '') + '</div>' +
+        '<div class="row2"><div class="stepper">' +
+          '<button type="button" data-dec="' + id + '" aria-label="Kurangi jumlah"' + (q <= 1 ? ' disabled' : '') + '>−</button>' +
+          '<output aria-live="polite">' + q + '</output>' +
+          '<button type="button" data-inc="' + id + '" aria-label="Tambah jumlah"' + (q >= 99 ? ' disabled' : '') + '>+</button>' +
+        '</div><button type="button" class="del" data-del="' + id + '">Hapus</button></div></div>';
+      li.querySelector(".nm").textContent = p.name;
+      li.querySelector(".thumb").appendChild(p.svg.cloneNode(true));
+      list.appendChild(li);
+    });
+
+    var ship = (prodSub === 0 || prodSub >= FREE_MIN) ? 0 : ONGKIR;
+    $("sumQty").textContent = qty;
+    $("sumSub").textContent = fmt(sub);
+    $("sumSave").textContent = fmt(saved);
+    $("sumSave").parentNode.hidden = saved === 0;
+    $("sumShip").textContent = prodSub === 0 ? "Tidak perlu" : (ship ? fmt(ship) : "Gratis");
+    $("sumTotal").textContent = fmt(sub + ship);
+    $("shipHint").hidden = prodSub === 0;
+    $("shipHint").querySelector("span").textContent = ship
+      ? "Belanja produk " + fmt(FREE_MIN - prodSub) + " lagi untuk gratis ongkir"
+      : "Kamu dapat gratis ongkir";
+
+    var prods = ids.filter(function(id){ return !catalog[id].service; });
+    var svcs = ids.filter(function(id){ return catalog[id].service; });
+    var line = function(id, i){ var p = catalog[id]; return (i+1) + ". " + p.name + " x" + cart[id] + " = " + fmt(p.price*cart[id]) + "\n"; };
+    var msg = "Halo PawWell, saya mau pesan:\n";
+    if(prods.length){ msg += "\nProduk:\n"; prods.forEach(function(id, i){ msg += line(id, i); }); }
+    if(svcs.length){ msg += "\nLayanan:\n"; svcs.forEach(function(id, i){ msg += line(id, i); }); }
+    if(prods.length) msg += "\nOngkir: " + (ship ? fmt(ship) : "Gratis");
+    msg += "\nTotal: " + fmt(sub + ship) + "\n\nNama:";
+    if(svcs.length) msg += "\nJenis & ukuran hewan:\nJadwal yang diinginkan:";
+    if(prods.length) msg += "\nAlamat pengiriman:";
+    checkout.href = "https://wa.me/" + WA + "?text=" + encodeURIComponent(msg);
+  }
+
+  var lastFocus = null;
+  function openCart(){
+    lastFocus = document.activeElement;
+    drawer.classList.add("open"); overlay.classList.add("open");
+    drawer.setAttribute("aria-hidden", "false"); btn.setAttribute("aria-expanded", "true");
+    document.body.classList.add("lock");
+    hideToast();
+    setTimeout(function(){ $("cartClose").focus(); }, 50);
+  }
+  function closeCart(){
+    drawer.classList.remove("open"); overlay.classList.remove("open");
+    drawer.setAttribute("aria-hidden", "true"); btn.setAttribute("aria-expanded", "false");
+    document.body.classList.remove("lock");
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  var toast = $("toast"), toastTimer;
+  function showToast(text){
+    $("toastMsg").textContent = text;
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(hideToast, 2600);
+  }
+  function hideToast(){ toast.classList.remove("show"); }
+
+  function add(id){
+    cart[id] = Math.min(99, (cart[id] || 0) + 1);
+    save(); render();
+    btn.classList.remove("bump"); void btn.offsetWidth; btn.classList.add("bump");
+  }
+
+  document.addEventListener("click", function(e){
+    var t = e.target.closest("button, a");
+    if(!t) return;
+    var card = t.closest(".product[data-id]");
+    if(t.hasAttribute("data-add") && card){ add(card.dataset.id); showToast(catalog[card.dataset.id].service ? "Layanan ditambahkan ke keranjang" : "Ditambahkan ke keranjang"); return; }
+    if(t.hasAttribute("data-buy") && card){ add(card.dataset.id); openCart(); return; }
+    if(t.dataset.inc){ cart[t.dataset.inc] = Math.min(99, cart[t.dataset.inc] + 1); save(); render(); return; }
+    if(t.dataset.dec){ cart[t.dataset.dec] = Math.max(1, cart[t.dataset.dec] - 1); save(); render(); return; }
+    if(t.dataset.del){ delete cart[t.dataset.del]; save(); render(); $("cartClose").focus(); return; }
+    if(t.hasAttribute("data-close")){ closeCart(); return; }
+  });
+  btn.addEventListener("click", openCart);
+  $("toastView").addEventListener("click", openCart);
+  $("cartClose").addEventListener("click", closeCart);
+  overlay.addEventListener("click", closeCart);
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape" && drawer.classList.contains("open")) closeCart();
+  });
+
+  render();
+})();
+
+</script>
+</body>
+</html>
